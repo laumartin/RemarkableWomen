@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remarkable Women</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <!-- Flask Jinja template. url_for() function looks up the view called home())and injects some text, 
+                    which is the actual root.-->
+                <a href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('login') }}">Login/Register</a>
+            </li>
+            <li>
+                <a href="{{ url_for('characters') }}">Woman Characters list</a>
+            </li>
+            <li>
+                <a href="{{ url_for('statistics') }}">Statistics</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- To allow base template inheritance to the other html files
+    Fask looks for a block called content in other files and injects their content into here-->
+    {% block content %}
+    {% endblock %}
+
+    
+</body>
+</html>

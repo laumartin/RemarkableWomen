@@ -1,5 +1,7 @@
 import os
 from flask import Flask, render_template
+if os.path.exists("env.py"):
+    import env
 
 # Once Flask is imported,create an instance of this and store in app variable
 # the argument of Flask class is the name of the applications module __name__

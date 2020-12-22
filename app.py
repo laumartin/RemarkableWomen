@@ -1,5 +1,10 @@
 import os
-from flask import Flask, render_template
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
+from flask_pymongo import PyMongo
+# MongoDB stores data in a JSON-like format called bson.
+from bson.objectid import ObjectId
 if os.path.exists("env.py"):
     import env
 
@@ -8,6 +13,15 @@ if os.path.exists("env.py"):
 # which is a built-in Python variable. Flask needs it to knows where to look
 # for templates and static files.
 app = Flask(__name__)
+# first configuration will be used to grab the db name
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+# to configure the actual connection string
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+# SECRET_KEY required when using some functions from Flask
+app.secret_key = os.environ.get("SECRET_KEY")
+
+# To ensure Flask app is communicating with Mongo db
+mongo = PyMongo(app)
 
 # @route decorator to wrap function and trigger it when browsing the directory
 # Flask expects to be a directory called templates,on the same level as run.py
@@ -16,14 +30,16 @@ def home():
     return render_template("home.html")
 
 
+@app.route("/characters")
+def characters():
+    characters = mongo.db.woman_card.find()
+
+    return render_template("characters.html", characters=characters)
+
+
 @app.route("/login")
 def login():
     return render_template("login.html")
-
-
-@app.route("/characters")
-def characters():
-    return render_template("characters.html")
 
 
 @app.route("/statistics")

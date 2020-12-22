@@ -3,10 +3,21 @@
     <h2>Current List</h2>
     <div class="container">
         
-
         <div class="row">
             <div class="col-lg-6">
                 column 1
+                {% for character in characters %}
+                    {{ character.woman_image }}<br>
+                    {{ character.woman_name }}<br>
+                    {{ character.category_name }}<br>
+                    {{ character.year }}<br>
+                    {{ character.country }}<br>
+                    {{ character.area_name }}<br>
+                    {{ character.quote }}<br>
+                    {{ character.story }}<br>
+                    {{ character.more_link }}<br>
+                    {{ character.user_name }}<br>
+                {% endfor %}
                 <img src="https://via.placeholder.com/300.jpg" alt="">
                 <p>Description here</p>
                 

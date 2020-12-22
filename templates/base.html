@@ -58,11 +58,25 @@
         </div>
     </nav>
 
+    <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row">
+                        <h4 class="center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
     
   <!-- To allow base template inheritance to the other html files
     Fask looks for a block called content in other files and injects their content into here-->
+    <main class="container">
     {% block content %}
     {% endblock %}
+    </main>
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

@@ -33,7 +33,35 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # Check if username already exist in db and store that in a variable
+        # set it to look for a user with find_one() method in users collection
+        existing_user = mongo.db.users.find_one(
+            # Look for the key username in db,the value will be the form data
+            # username input(Python looks name="" attribute from html form)
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists, please choose a different one")
+            # redirect the user back to the url_for()'register' function
+            # to try again with another username.
+            return redirect(url_for("register"))
+
+        # if no existing user,take data from form into the register dictionary
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+            }
+        # call the users collection on MongoDB and use insert_one() method
+        mongo.db.users.insert_one(register)
+
+        # puts new user into a session temp cookie,imported from flask
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Completed")
+
     return render_template("register.html")
+
+
 
 
 @app.route("/characters")

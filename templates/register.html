@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <div class="row">
-        <form class="col-10 md-8 offset-md-1 mt-3 mb-3" method="POST" action="{{ url_for('register') }}">
+    <div class="row justify-content-center">
+        <form class="col-8 md-6 mt-3 mb-3" method="POST" action="{{ url_for('register') }}">
             <div class="card">
                 <div class="card-header">
                     User Registration
@@ -10,30 +10,40 @@
                 <div class="card-body">
                     <h5 class="card-tittle">User Details</h5>
                     <!--User Name -->
-                    <div class="form-group row pl-5">
+                    <div class="form-group col-4 pl-5">
                         <i class="fas fa-user-plus prefix"></i>
                         <label for="username" class="pl-2 pr-2">Username</label>
                         <input type="text" id="username" name="username" minlength="4"
                             maxlength="10" pattern="^[a-zA-Z0-9]{4,10}$" class="card-text" required>
                     </div>
+                    <div class="form-group col-4 pl-5">
+                        <i class="fas fa-envelope-square prefix"></i>
+                        <label for="email" class="pl-2 pr-2">Email</label>
+                        <input type="email" id="Email" name="email" class="card-text" required>
+                    </div>
                     <!--Password -->
-                    <div class="form-group row pl-5">
+                    <div class="form-group col-4 pl-5">
                         <i class="fas fa-user-lock prefix"></i>
                         <label for="password" class="pl-2 pr-2">Password</label>
                         <input type="text" id="password" name="password" minlength="8" 
                             maxlength="20" pattern="^[a-zA-Z0-9]{8,20}$" class="card-text" required>
-                        <small id="passwordHelp" class="text-muted pl-2">
+                        <small id="passwordHelp" class="pl-2">
                             Must be 8-20 characters long.
                         </small>
                     </div>
                     <!--Register button -->
-                    <div class="row">
+                    <div class="col text-center">
                         <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                    <div class="row text-center">
+                        <p>Already registered? <a href="{{ url_for('login') }}">Log In here</a>
+                        </p>
                     </div>
                 </div>
             </div>
             
         </form>
+        
     </div>
 
 {% endblock %}

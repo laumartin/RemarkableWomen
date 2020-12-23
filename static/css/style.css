@@ -6,3 +6,17 @@
 .col-lg-2 img{
     width: 100%;
 }
+
+/* Register Form */
+input:required:valid {
+  border-color: green;
+}
+input:invalid {
+  border-color: red;
+}
+input:required:focus:valid {
+   border-color: green;
+}
+input:focus:invalid {
+    border-color: red;
+}

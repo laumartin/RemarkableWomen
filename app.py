@@ -111,6 +111,14 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+@app.route("/logout")
+def logout():
+    flash("You have logged out from your account")
+    # remove user from user session cookies and redirect to login page
+    session.pop("user")
+    return redirect(url_for("login"))
+
+
 @app.route("/characters")
 def characters():
     characters = mongo.db.woman_card.find()

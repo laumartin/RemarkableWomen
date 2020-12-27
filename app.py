@@ -59,6 +59,7 @@ def register():
         # puts new user into a session temp cookie,imported from flask
         session["user"] = request.form.get("username").lower()
         flash("Registration Completed")
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("register.html")
 
@@ -79,6 +80,8 @@ def login():
                 # now log the user in using session variables called user
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -90,6 +93,22 @@ def login():
             return redirect(url_for("login.html"))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # creates new username var, that is the user from db on the registered
+    # users collection. The session variable in [] called 'user' for
+    # consistency, and we only grab the username key field from the db record
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    # to avoid user's force the URL to someone else's profile create condition
+    # so that only if the user session cookie is true, then return the profile.
+    if session["user"]:
+        # 1st username is what the template expects to retrieve in html file
+        # the second username is the variable defined above
+        return render_template("profile.html", username=username)
+    return redirect(url_for("login"))
 
 
 @app.route("/characters")

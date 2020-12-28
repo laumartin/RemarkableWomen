@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Current List</h2>
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-lg-6">
+                column 1
+                {% for character in characters %}
+                    {{ character.woman_image }}<br>
+                    {{ character.woman_name }}<br>
+                    {{ character.category_name }}<br>
+                    {{ character.year }}<br>
+                    {{ character.country }}<br>
+                    {{ character.area_name }}<br>
+                    {{ character.quote }}<br>
+                    {{ character.story }}<br>
+                    {{ character.more_link }}<br>
+                    {{ character.user_name }}<br>
+                {% endfor %}
+                <img src="https://via.placeholder.com/300.jpg" alt="">
+                <p>Description here</p>
+                
+            </div>
+            <div class="col-lg-6">
+                column 2
+                <div class="row">
+                        <!--filters here-->
+                </div> 
+                <div class="row"> 
+                    <!--ROW 1-->
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 1</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 2</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 3</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 4</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--ROW 2-->
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 5</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 6</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 7</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 8</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--ROW 3-->
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 9</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 10</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 11</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <img src="https://via.placeholder.com/150.jpg" alt="">
+                        <p>Box 12</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+{% endblock %}
+   
+    

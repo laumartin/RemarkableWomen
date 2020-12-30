@@ -6,5 +6,9 @@ $(document).on("click", '[data-toggle="lightbox"]', function(event) {
   $(this).ekkoLightbox();
 });
 
+// To use the select country bootstrap package 
+$('.countrypicker').countrypicker();
+ 
+
 
 

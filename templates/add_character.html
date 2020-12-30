@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <h3> Add a new Character to our list</h3>
-    <form class="needs-validation" novalidate method="POST" action="">
+    <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_character') }}">
         <div class="form-row">
             <div class="form-group col-auto">
                 <label for="character_name">Character Name</label>
@@ -33,96 +33,40 @@
             </div>
         </div>
         <div class="form-group">
-                <label for="skill">Skilled Area</label>
+                <label for="skilled_area">Skilled Area</label>
         </div>
-        <div class="form-group form-row ml-3">
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="warrior" name="warrior">
-                <label class="form-check-label" for="warrior">
-                     Warrior
+        {% for area in skilled_area %}
+        <div class="form-group form-row col-6">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{ area.area_name }}" id="skilled_area" name="skilled_area">
+                <label class="form-check-label" for="skilled_area">
                 </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="intelectual" name="intelectual">
-                <label class="form-check-label" for="intelectual">
-                    Intelectual
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="politics" name="politics">
-                <label class="form-check-label" for="politics">
-                    Politics
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="science" name="science">
-                <label class="form-check-label" for="science">
-                    Science/Tech
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="artist" name="artist">
-                <label class="form-check-label" for="artist">
-                    Artist
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="pionneer" name="pionneer">
-                <label class="form-check-label" for="pionneer">
-                    Pionneer
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="activist" name="activist">
-                <label class="form-check-label" for="activist">
-                    Activist
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="leader" name="leader">
-                <label class="form-check-label" for="leader">
-                    Leader
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="sports" name="sports">
-                <label class="form-check-label" for="sports">
-                    Sports 
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="survivor" name="survivor">
-                <label class="form-check-label" for="survivor">
-                    Survivor
-                </label>
-            </div>
-            <div class="form-check col-6">
-                <input class="form-check-input" type="checkbox" value="" id="rebel" name="rebel">
-                <label class="form-check-label" for="rebel">
-                    Rebel
-                </label>
+        {{ area.area_name }}
             </div>
         </div>
+        {% endfor %}
         <div class="form-group col-lg-8">
             <label for="quote">Quote</label>
-            <textarea class="form-control" id="quote" name="quote" rows="3"></textarea>
+            <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
         </div>
         <div class="form-group col-lg-8">
             <label for="story">Story</label>
             <textarea class="form-control" id="story" name="story" rows="6" required maxlength="1000"></textarea>
         </div>
         <div class="form-group col-lg-8">
-            <label for="knowmore">Link to know more</label>
-            <textarea class="form-control" id="knowmore" name="knowmore" rows="2"></textarea>
+            <label for="more_link">Link to know more</label>
+            <input type="url" class="form-control" id="more_link" name="more_link">
         </div>
 
-        <div class="form-group">
-            <label for="upload">Example file input</label>
-            <input type="file" class="form-control-file" id="upload" name="upload">
+        <div class="form-group col-lg-8">
+            <label for="image">Character Image link</label>
+            <input type="url" class="form-control" id="image" name="image" required>
         </div>
-
-        <button class="btn btn-primary" type="submit">Submit Character</button>
-        
+        <div class="col-lg-2">
+            <button class="btn btn-primary" type="submit" aria-label="submit">Submit Character</button>
+        </div>
+        <button class="btn" href="" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
+        </button>
     </form>
         {% for character in characters %}
             <p>Added by: {{ character.username }} </p>

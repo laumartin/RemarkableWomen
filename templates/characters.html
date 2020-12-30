@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Current List</h2>
+    
     <div class="container">
+        <h2>Current List of Women Characters</h2>
         <div class="row justify-content-center">
             
             <div class="col-lg-10">
@@ -12,28 +13,21 @@
                             <div class='row modal-dialog-scrollable'>
                                 <div class='col-12'>
                                     <h5 class='modal-title'>{{ character.woman_name }}</h5>
-                                    <p><img src='{{ character.woman_image }}' alt='{{ character.woman_name }}' width='50%' height='50%'></p>
+                                    <p><img src='{{ character.image }}' alt='{{ character.woman_name }}' width='50%' height='50%'></p>
                                     <h5>Category</h5> <p>{{ character.category_name }}</p>
                                     <h5>Year of Birth</h5> <p>{{ character.year }}</p>
                                     <h5>Country</h5> <p>{{ character.country }}</p>
                                     <h5>Skilled Area</h5> <p>{{ character.area_name }}</p>
                                     <h5>Quote</h5> <p>'{{ character.quote }}'</p>
                                     <h5>Story</h5> <p>{{ character.story }}</p>
-                                    <h5>More info</h5> <p>{{ character.more_link }}</p>
-                                    <h5>Added by:</h5> <p>{{ character.username }}</p>
+                                    <p><a href='{{ character.more_link }}' target='_blank' title='Know more'>More Info</a></p>
+                                    <p><em>Added by: {{ character.username }}</em></p>
                                 </div>
                             </div>">
                     
-                    <img src="{{ character.woman_image }}" class="img-fluid rounded">
-                    </a>
-                    
-                    <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="gallery"
-                        data-title="Second image title" data-footer="All data from character footer text" class="col-md-4">
-                        <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid rounded">
-                    </a>
-                    <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="gallery"
-                        data-title="First image title" data-footer="All data from character footer text" class="col-md-4">
-                        <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid rounded">
+                    <div class="row">
+                        <img src="{{ character.image }}" class="img-fluid rounded col-lg-12 col-md-4">
+                    </div>
                     </a>
                 </div>
             {% endfor %}

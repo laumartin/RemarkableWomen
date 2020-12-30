@@ -119,12 +119,34 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route('/add_character')
+@app.route('/add_character', methods=["GET", "POST"])
 def add_character():
+    #this function allows the user to add a character to db
+    if request.method == "POST":
+        character = {
+            # this use the name attributes from the character form to grab data
+            # and that's what gets stored into mongo db in a dictionary
+            "category_name": request.form.get("category_name"),
+            "woman_name": request.form.get("woman_name"),
+            "year": request.form.get("year"),
+            "country": request.form.get("country"),
+            "quote": request.form.get("quote"),
+            "story": request.form.get("story"),
+            "image": request.form.get("image"),
+            "area_name": request.form.getlist("area_name"),
+            "more_link": request.form.get("more_link"),
+            "username": session["user"]
+            }
+        # use character variable into woman_card collection
+        mongo.db.woman_card.insert_one(character)
+        flash("Character Successfully included")
+        return redirect(url_for("characters"))
     # perform find() method on categories collection sorted by name
     categories = mongo.db.categories.find().sort("category_name", 1)
+    # display list of skills options from mongo db for checkbox character form
+    area = list(mongo.db.skilled_area.find({}, {"area_name"}))
 
-    return render_template("add_character.html", categories=categories)
+    return render_template("add_character.html", categories=categories, skilled_area=area)
 
 
 @app.route("/characters")

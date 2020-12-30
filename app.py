@@ -121,7 +121,10 @@ def logout():
 
 @app.route('/add_character')
 def add_character():
-    return render_template("add_character.html")
+    # perform find() method on categories collection sorted by name
+    categories = mongo.db.categories.find().sort("category_name", 1)
+
+    return render_template("add_character.html", categories=categories)
 
 
 @app.route("/characters")

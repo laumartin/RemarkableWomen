@@ -15,11 +15,12 @@
                 <input type="text" class="form-control" id="year" name="year" placeholder="Year of Birth" minlength="4" maxlenght="4">
             </div>
             <div class="form-group col-auto">
-                <label for="category">Category</label>
-                <select class="form-control" id="category" name="category" required>
-                <option>Fiction</option>
-                <option>Myth</option>
-                <option>Historical</option>
+                <label for="category_name">Category</label>
+                <select class="form-control" id="category_name" name="category_name" required>
+                    <option value="" disabled selected>Choose category</option>
+                    {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

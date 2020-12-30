@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3> Add a new Character to our list</h3>
+    <form method="POST" action="">
+        <div class="form-row">
+            <div class="form-group col-auto">
+                <label for="character_name">Character Name</label>
+                <input type="text" class="form-control" id="character_name" placeholder="Woman Character Name">
+            </div>
+            <div class="form-group col-auto">
+                <label for="character_name">Year of Birth</label>
+                <input type="text" class="form-control" id="year" placeholder="Year of Birth">
+            </div>
+            <div class="form-group col-auto">
+                <label for="category">Category</label>
+                <select class="form-control" id="category">
+                <option>Fiction</option>
+                <option>Myth</option>
+                <option>Historical</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Country</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="skill">Skilled Area</label>
+        </div>
+        <div class="form-group form-row ml-3">
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="warrior">
+                <label class="form-check-label" for="warrior">
+                     Warrior
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="intelectual">
+                <label class="form-check-label" for="intelectual">
+                    Intelectual
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="politics">
+                <label class="form-check-label" for="politics">
+                    Politics
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="science">
+                <label class="form-check-label" for="science">
+                    Science/Tech
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="artist">
+                <label class="form-check-label" for="artist">
+                    Artist
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="pionneer">
+                <label class="form-check-label" for="pionneer">
+                    Pionneer
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="activist">
+                <label class="form-check-label" for="activist">
+                    Activist
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="leader">
+                <label class="form-check-label" for="leader">
+                    Leader
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="sports">
+                <label class="form-check-label" for="sports">
+                    Sports 
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="survivor">
+                <label class="form-check-label" for="survivor">
+                    Survivor
+                </label>
+            </div>
+            <div class="form-check col-6">
+                <input class="form-check-input" type="checkbox" value="" id="rebel">
+                <label class="form-check-label" for="rebel">
+                    Rebel
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-lg-8">
+            <label for="quote">Quote</label>
+            <textarea class="form-control" id="quote" rows="3"></textarea>
+        </div>
+        <div class="form-group col-lg-8">
+            <label for="story">Story</label>
+            <textarea class="form-control" id="story" rows="6"></textarea>
+        </div>
+        <div class="form-group col-lg-8">
+            <label for="quote">Link to know more</label>
+            <textarea class="form-control" id="knowmore" rows="2"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="upload">Example file input</label>
+            <input type="file" class="form-control-file" id="upload">
+        </div>
+        
+    </form>
+        {% for character in characters %}
+            <p>Added by: {{ character.username }} </p>
+        {% endfor %} 
+
+
+
+{% endblock %}

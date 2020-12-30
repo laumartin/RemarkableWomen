@@ -119,6 +119,11 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route('/add_character')
+def add_character():
+    return render_template("add_character.html")
+
+
 @app.route("/characters")
 def characters():
     characters = mongo.db.woman_card.find()

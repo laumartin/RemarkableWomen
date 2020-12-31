@@ -157,6 +157,28 @@ def add_character():
 @app.route("/edit_character/<character_id>", methods=["GET","POST"])
 # This function retrieve a character from the db that we want to edit by its ID
 def edit_character(character_id):
+    if request.method == "POST":
+        submit_edit = {
+            # this use the name attributes from the character form to grab data
+            # and that's what gets stored into mongo db in a dictionary
+            "category_name": request.form.get("category_name"),
+            "woman_name": request.form.get("woman_name"),
+            "year": request.form.get("year"),
+            "country_name": request.form.get("country_name"),
+            "quote": request.form.get("quote"),
+            "story": request.form.get("story"),
+            "image": request.form.get("image"),
+            "area_name": request.form.getlist("area_name"),
+            "more_link": request.form.get("more_link"),
+            "username": session["user"]
+            }
+        # 1st argument is the character to update targeted by id and
+        # 2nd is the submit_edit variable which contains all form elements
+        mongo.db.woman_card.update(
+            {"_id": ObjectId(character_id)}, submit_edit)
+        flash("Character Updated")
+
+
     # The variable character uses find_one method on woman_card collection
     # and look for the key of _id
     character = mongo.db.woman_card.find_one({"_id": ObjectId(character_id)})
@@ -169,8 +191,6 @@ def edit_character(character_id):
     return render_template(
         "edit_character.html", character=character, categories=categories,
         countries=countries, skilled_area=area)
-
-
 
 
 @app.route("/characters")

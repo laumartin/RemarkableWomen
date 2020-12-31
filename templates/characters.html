@@ -32,8 +32,10 @@
                     
                     </a>
                 </div>
-                <a href="#" class="btn-success">Done</a>
+                <!-- If the session user is = to the character's username variable, both in lowecase for comparison, then the buttons will be shown-->
+                {% if session.user | lower == character.username | lower %}
                 <a href="{{ url_for('edit_character', character_id=character._id) }}" class="btn-default">Edit</a>
+                {% endif %}
             {% endfor %}
         
             </div>

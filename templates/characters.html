@@ -23,13 +23,17 @@
                                     <p><a href='{{ character.more_link }}' target='_blank' title='Know more'>More Info</a></p>
                                     <p><em>Added by: {{ character.username }}</em></p>
                                 </div>
+                            
                             </div>">
                     
-                    <div class="row">
-                        <img src="{{ character.image }}" class="img-fluid rounded col-lg-12 col-md-4">
-                    </div>
+                        <div class="row">
+                            <img src="{{ character.image }}" class="img-fluid rounded col-lg-12 col-md-4">
+                        </div>
+                    
                     </a>
                 </div>
+                <a href="#" class="btn-success">Done</a>
+                <a href="{{ url_for('edit_character', character_id=character._id) }}" class="btn-default">Edit</a>
             {% endfor %}
         
             </div>

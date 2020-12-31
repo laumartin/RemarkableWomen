@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 # MongoDB stores data in a JSON-like format called bson.
+# ObjectId from BSON,allows render MongoDB docs by their ID.
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -147,6 +148,22 @@ def add_character():
     area = list(mongo.db.skilled_area.find({}, {"area_name"}))
 
     return render_template("add_character.html", categories=categories, skilled_area=area)
+
+
+@app.route("/edit_character/<character_id>", methods=["GET","POST"])
+# This function retrieve a character from the db that we want to edit by its ID
+def edit_character(character_id):
+    # The variable character uses find_one method on woman_card collection
+    # and look for the key of _id
+    character = mongo.db.woman_card.find_one({"_id": ObjectId(character_id)})
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    # display list of skills options from mongo db for checkbox character form
+    area = list(mongo.db.skilled_area.find({}, {"area_name"}))
+
+    return render_template("edit_character.html", character=character, categories=categories, skilled_area=area)
+
+
 
 
 @app.route("/characters")

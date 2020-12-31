@@ -5,21 +5,25 @@
         <div class="form-row">
             <div class="form-group col-auto">
                 <label for="character_name">Character Name</label>
-                <input type="text" class="form-control" id="character_name" name="character_name" placeholder="Woman Character Name" aria-describedby="inputGroupPrepend" minlength="2" maxlenght="25" required>
+                <input value="{{ character.woman_name }}" type="text" class="form-control" id="character_name" name="character_name" placeholder="Woman Character Name" aria-describedby="inputGroupPrepend" minlength="2" maxlenght="25" required>
                 <div class="invalid-feedback">
                 Please choose a character name.
                 </div>
             </div>
             <div class="form-group col-auto">
-                <label for="character_name">Year of Birth</label>
-                <input type="text" class="form-control" id="year" name="year" placeholder="Year of Birth" minlength="4" maxlenght="4">
+                <label for="year">Year of Birth</label>
+                <input value="{{character.year}}" type="text" class="form-control" id="year" name="year" placeholder="Year of Birth" minlength="4" maxlenght="4">
             </div>
             <div class="form-group col-auto">
                 <label for="category_name">Category</label>
                 <select class="form-control" id="category_name" name="category_name" required>
                     <option value="" disabled selected>Choose category</option>
                     {% for category in categories %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% if category.category_name == character.category_name %}
+                            <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                        {% else %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -27,8 +31,15 @@
         <div class="form-row">
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class=" form-control countrypicker" id="country" name="country" required>
-                
+                <select class=" form-control" id="country_name" name="country_name" required>
+                    <option value="" disabled selected>Choose Country</option>
+                    {% for country in countries %}
+                        {% if country.country_name == character.country_name %}
+                            <option value="{{ country.country_name }}" selected>{{ country.country_name }}</option>
+                        {% else %}
+                            <option value="{{ country.country_name }}">{{ country.country_name }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -36,36 +47,38 @@
                 <label for="skilled_area">Skilled Area</label>
         </div>
         {% for area in skilled_area %}
+            
         <div class="form-group form-row col-6">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{ area.area_name }}" id="skilled_area" name="skilled_area">
-                <label class="form-check-label" for="skilled_area">
+                <input class="form-check-input" value="{{ character.area_name}}" selected type="checkbox" id="area_name" name="area_name">
+                <label class="form-check-label" for="area_name">
                 </label>
         {{ area.area_name }}
             </div>
         </div>
         {% endfor %}
+
         <div class="form-group col-lg-8">
             <label for="quote">Quote</label>
-            <textarea class="form-control" id="quote" name="quote" rows="2"></textarea>
+            <textarea class="form-control" id="quote" name="quote" rows="2">{{- character.quote -}}</textarea>
         </div>
         <div class="form-group col-lg-8">
             <label for="story">Story</label>
-            <textarea class="form-control" id="story" name="story" rows="6" required maxlength="1000"></textarea>
+            <textarea class="form-control" id="story" name="story" rows="6" required maxlength="1000">{{- character.story -}}</textarea>
         </div>
         <div class="form-group col-lg-8">
             <label for="more_link">Link to know more</label>
-            <input type="url" class="form-control" id="more_link" name="more_link">
+            <input value="{{ character.more_link}}" type="url" class="form-control" id="more_link" name="more_link">
         </div>
 
         <div class="form-group col-lg-8">
             <label for="image">Character Image link</label>
-            <input type="url" class="form-control" id="image" name="image" required>
+            <input value="{{character.image}}" type="url" class="form-control" id="image" name="image" required>
         </div>
         <div class="col-lg-2">
             <button class="btn btn-primary" type="submit" aria-label="submit">Edit Character</button>
         </div>
-        <button class="btn" href="" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
+        <button class="btn" href="{{ url_for('characters')}}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
         </button>
     </form>
         {% for character in characters %}

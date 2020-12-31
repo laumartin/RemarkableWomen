@@ -130,7 +130,7 @@ def add_character():
             "category_name": request.form.get("category_name"),
             "woman_name": request.form.get("woman_name"),
             "year": request.form.get("year"),
-            "country": request.form.get("country"),
+            "country_name": request.form.get("country_name"),
             "quote": request.form.get("quote"),
             "story": request.form.get("story"),
             "image": request.form.get("image"),
@@ -144,10 +144,14 @@ def add_character():
         return redirect(url_for("characters"))
     # perform find() method on categories collection sorted by name
     categories = mongo.db.categories.find().sort("category_name", 1)
+    # perform find() method on countries collection sorted by name
+    countries = mongo.db.countries.find().sort("country_name", 1)
     # display list of skills options from mongo db for checkbox character form
     area = list(mongo.db.skilled_area.find({}, {"area_name"}))
 
-    return render_template("add_character.html", categories=categories, skilled_area=area)
+    return render_template(
+        "add_character.html", categories=categories, countries=countries,
+        skilled_area=area)
 
 
 @app.route("/edit_character/<character_id>", methods=["GET","POST"])
@@ -159,9 +163,12 @@ def edit_character(character_id):
 
     categories = mongo.db.categories.find().sort("category_name", 1)
     # display list of skills options from mongo db for checkbox character form
+    countries = mongo.db.countries.find().sort("country_name", 1)
     area = list(mongo.db.skilled_area.find({}, {"area_name"}))
 
-    return render_template("edit_character.html", character=character, categories=categories, skilled_area=area)
+    return render_template(
+        "edit_character.html", character=character, categories=categories,
+        countries=countries, skilled_area=area)
 
 
 

@@ -51,7 +51,7 @@ def register():
         # if no existing user,take data from form into the register dictionary
         register = {
             "username": request.form.get("username").lower(),
-            "email": request.frm.get("email").lower(),
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
             }
         # call the users collection on MongoDB and use insert_one() method

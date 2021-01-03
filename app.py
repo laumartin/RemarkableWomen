@@ -207,6 +207,12 @@ def delete_character(character_id):
     return redirect(url_for("characters"))
 
 
+@app.route("/get_categories")
+def get_categories():
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("admin_manage.html", categories=categories)
+
+
 @app.route("/statistics")
 def statistics():
 

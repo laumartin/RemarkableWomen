@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3 class="center-align">Admin Manage Form Fields</h3>
+
+    <!-- Admin manage for Category -->
+    <div class="row">
+        <div class="row">
+            <div class="col-12 center-align">
+                <a href="#" class="btn">
+                    Add Category <i class="fas fa-plus-square right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-12 m3">
+                    <div class="card center-align">
+                        <div class="card">
+                            <span class="card-title">{{ category.category_name }}</span>
+                        </div>
+                        <div class="card">
+                            <!-- we're calling the edit_category function, and passing through the category_id variable. That's going to be set
+                                to the current category iteration within this Jinja for-loop at the top of the row class. 
+                                Using dot-notation, it'll target this category's key of '_id' from MongoDB.-->
+                        <a href="#" class="btn">Edit</a>
+                        <a href="#" class="btn">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Admin manage for Skill Area -->
+    <div class="row">
+        <div class="row">
+            <div class="col-12 center-align">
+                <a href="#" class="btn">
+                    Add Skill Area <i class="fas fa-plus-square right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 m3">
+                    <div class="card center-align">
+                        <div class="card">
+                            <span class="card-title"></span>
+                        </div>
+                        <div class="card">
+                            
+                        <a href="#" class="btn">Edit</a>
+                        <a href="#" class="btn">Delete</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- Admin manage for Characters added -->
+
+{% endblock %}

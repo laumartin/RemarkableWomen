@@ -33,6 +33,12 @@ def home():
     return render_template("home.html")
 
 
+@app.route("/characters")
+def characters():
+    characters = mongo.db.woman_card.find()
+    return render_template("characters.html", characters=characters)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -179,7 +185,6 @@ def edit_character(character_id):
             {"_id": ObjectId(character_id)}, submit_edit)
         flash("Character Updated")
 
-
     # The variable character uses find_one method on woman_card collection
     # and look for the key of _id
     character = mongo.db.woman_card.find_one({"_id": ObjectId(character_id)})
@@ -194,11 +199,12 @@ def edit_character(character_id):
         countries=countries, skilled_area=area)
 
 
-@app.route("/characters")
-def characters():
-    characters = mongo.db.woman_card.find()
-
-    return render_template("characters.html", characters=characters)
+@app.route("/delete_character/<character_id>")
+# for user to be able to delete a character he has added
+def delete_character(character_id):
+    mongo.db.woman_card.remove({"_id": ObjectId(character_id)})
+    flash("Character Removed")
+    return redirect(url_for("characters"))
 
 
 @app.route("/statistics")

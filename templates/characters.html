@@ -8,33 +8,40 @@
             <div class="col-lg-10">
                 {% for character in characters %}
                 <div class="row">
-                    <a href="#" data-toggle="lightbox" data-gallery="gallery" 
-                        data-title="<p>{{ character.woman_name }}</p>" class="col-md-4 modal-content" data-footer="
-                            <div class='row modal-dialog-scrollable'>
-                                <div class='col-12'>
-                                    <h5 class='modal-title'>{{ character.woman_name }}</h5>
-                                    <p><img src='{{ character.image }}' alt='{{ character.woman_name }}' width='50%' height='50%'></p>
-                                    <h5>Category</h5> <p>{{ character.category_name }}</p>
-                                    <h5>Year of Birth</h5> <p>{{ character.year }}</p>
-                                    <h5>Country</h5> <p>{{ character.country_name }}</p>
-                                    <h5>Skilled Area</h5> <p>{{ character.area_name }}</p>
-                                    <h5>Quote</h5> <p>'{{ character.quote }}'</p>
-                                    <h5>Story</h5> <p>{{ character.story }}</p>
-                                    <p><a href='{{ character.more_link }}' target='_blank' title='Know more'>More Info</a></p>
-                                    <p><em>Added by: {{ character.username }}</em></p>
-                                </div>
+                    <div class="col-lg-10">
+                        <a href="#" data-toggle="lightbox" data-gallery="gallery" 
+                            data-title="<p>{{ character.woman_name }}</p>" class="col-md-4 modal-content" data-footer="
+                                <div class='row modal-dialog-scrollable'>
+                                    <div class='col-12'>
+                                        <h5 class='modal-title'>{{ character.woman_name }}</h5>
+                                        <p><img src='{{ character.image }}' alt='{{ character.woman_name }}' width='50%' height='50%'></p>
+                                        <h5>Category</h5> <p>{{ character.category_name }}</p>
+                                        <h5>Year of Birth</h5> <p>{{ character.year }}</p>
+                                        <h5>Country</h5> <p>{{ character.country_name }}</p>
+                                        <h5>Skilled Area</h5> <p>{{ character.area_name }}</p>
+                                        <h5>Quote</h5> <p>'{{ character.quote }}'</p>
+                                        <h5>Story</h5> <p>{{ character.story }}</p>
+                                        <p><a href='{{ character.more_link }}' target='_blank' title='Know more'>More Info</a></p>
+                                        <p><em>Added by: {{ character.username }}</em></p>
+                                    </div>
+                                
+                                </div>">
+                        
+                            <div class="row">
+                                <img src="{{ character.image }}" width="100%" height="100%" class="rounded col-lg-12 col-md-6">
+                                
+                            </div>
                             
-                            </div>">
-                    
-                        <div class="row">
-                            <img src="{{ character.image }}" class="img-fluid rounded col-lg-12 col-md-4">
-                        </div>
-                    
-                    </a>
+                        </a>
+                    </div>
+                                        
+
                 </div>
                 <!-- If the session user is = to the character's username variable, both in lowecase for comparison, then the buttons will be shown-->
                 {% if session.user | lower == character.username | lower %}
+               
                 <a href="{{ url_for('edit_character', character_id=character._id) }}" class="btn-default">Edit</a>
+                 <a href="{{ url_for('delete_character', character_id=character._id) }}" class="btn-default">Delete</a>
                 {% endif %}
             {% endfor %}
         

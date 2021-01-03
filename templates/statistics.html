@@ -1,4 +1,119 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <h2>Statistics</h2>
+    <canvas id="myChart" width="400" height="400"></canvas>
+
+    <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Cell Title
+              </div>
+              <div class="chart-stage">
+                <img data-src="holder.js/100%x120/white/text:100x120">
+              </div>
+              <div class="chart-notes">
+                Notes about this chart
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Cell Title
+              </div>
+              <div class="chart-stage">
+                <img data-src="holder.js/100%x265/white/text:100x265">
+              </div>
+              <div class="chart-notes">
+                Notes about this chart
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Cell Title
+              </div>
+              <div class="chart-stage">
+                <img data-src="holder.js/100%x265/white/text:100x265">
+              </div>
+              <div class="chart-notes">
+                Notes about this chart
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Cell Title
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x324/white/text:100x324">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Cell Title
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x60/white/text:100x60">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Cell Title
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x60/white/text:100x60">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+    <hr>
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
+
+
+  <script src="./static/lib/js/holder.js"></script>
+
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  
 {% endblock %}

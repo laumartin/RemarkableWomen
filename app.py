@@ -25,6 +25,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # To ensure Flask app is communicating with Mongo db
 mongo = PyMongo(app)
 
+
 # @route decorator to wrap function and trigger it when browsing the directory
 # Flask expects to be a directory called templates,on the same level as run.py
 @app.route("/")
@@ -202,6 +203,7 @@ def characters():
 
 @app.route("/statistics")
 def statistics():
+
     return render_template("statistics.html")
 
 

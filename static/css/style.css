@@ -22,3 +22,5 @@ input:required:focus:valid {
 input:focus:invalid {
     border-color: red;
 }
+
+/* Statistics */

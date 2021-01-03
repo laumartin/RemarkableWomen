@@ -207,10 +207,59 @@ def delete_character(character_id):
     return redirect(url_for("characters"))
 
 
-@app.route("/get_categories")
-def get_categories():
-    categories = list(mongo.db.categories.find().sort("category_name", 1))
-    return render_template("admin_manage.html", categories=categories)
+@app.route("/get_fields")
+def get_fields():
+    categories = mongo.db.categories.find()
+    areas = (mongo.db.skilled_area.find())
+    return render_template(
+        "admin_manage.html", categories=categories, skilled_area=areas)
+
+
+@app.route("/get_areas")
+def get_areas():
+    area = list(mongo.db.skilled_area.find({}, {"area_name"}))
+    return render_template("admin_manage.html", skilled_area=area)
+
+
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if request.method == "POST":
+        category = {
+            "category_name": request.form.get("category_name")
+        }
+        mongo.db.categories.insert_one(category)
+        flash("New Category Added")
+        return redirect(url_for("get_fields"))
+
+    return render_template("add_field_options.html")
+
+
+@app.route("/add_area", methods=["GET", "POST"])
+def add_area():
+    if request.method == "POST":
+        area = {
+            "area_name": request.form.get("area_name")
+        }
+        mongo.db.skilled_area.insert_one(area)
+        flash("New Skilled Area added")
+        return redirect(url_for("get_fields"))
+    return render_template("add_field_options.html")
+
+
+@app.route("/delete_category/<category_id>")
+# for admin user to be able to delete a category he has added
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Category Removed")
+    return redirect(url_for("get_fields"))
+
+
+@app.route("/delete_area/<area_id>")
+# for admin user to be able to delete an skill area he has added
+def delete_area(area_id):
+    mongo.db.skilled_area.remove({"_id": ObjectId(area_id)})
+    flash("Skill Area Removed")
+    return redirect(url_for("get_fields"))
 
 
 @app.route("/statistics")

@@ -210,15 +210,9 @@ def delete_character(character_id):
 @app.route("/get_fields")
 def get_fields():
     categories = mongo.db.categories.find()
-    areas = (mongo.db.skilled_area.find())
+    areas = mongo.db.skilled_area.find()
     return render_template(
         "admin_manage.html", categories=categories, skilled_area=areas)
-
-
-@app.route("/get_areas")
-def get_areas():
-    area = list(mongo.db.skilled_area.find({}, {"area_name"}))
-    return render_template("admin_manage.html", skilled_area=area)
 
 
 @app.route("/add_category", methods=["GET", "POST"])
@@ -244,6 +238,47 @@ def add_area():
         flash("New Skilled Area added")
         return redirect(url_for("get_fields"))
     return render_template("add_field_options.html")
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    # if http request method is POST, submit the new data from the form
+    # via a dictionary called submit_category_changes
+    if request.method == "POST":
+        submit_category_changes = {
+            "category_name": request.form.get("category_name")
+        }
+        # update method on mongodb categories collection takes 2 dictionaries.
+        # The 1st dictionary defines the category to update by targeting
+        # category_id being sent to edit_category function.
+        # 2nd is the submit dictionary from above,to know what to update in db
+        mongo.db.categories.update(
+            {"_id": ObjectId(category_id)}, submit_category_changes)
+        flash("Category Updated")
+        return redirect(url_for("get_fields"))
+
+    # using category id sent into this function,perform find method
+    # on categories collection using objectId this will render
+    # as BSON in order to properly display between mongodb and flask
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    # the template is expecting 'category' variable to specify which category
+    # is being updated on the form, and set that = to the new variable above
+    return render_template("edit_field_options.html", category=category)
+
+
+# we replicate the same from edit_category function for the skills area
+@app.route("/edit_area/<area_id>", methods=["GET", "POST"])
+def edit_area(area_id):
+    if request.method == "POST":
+        submit_area_changes = {
+            "area_name": request.form.get("area_name")
+        }
+        mongo.db.skilled_area.update(
+            {"_id": ObjectId(area_id)}, submit_area_changes)
+        flash("Skills Area Updated")
+        return redirect(url_for("get_fields"))
+    area = mongo.db.skilled_area.find_one({"_id": ObjectId(area_id)})
+    return render_template("edit_field_options.html", area=area)
 
 
 @app.route("/delete_category/<category_id>")

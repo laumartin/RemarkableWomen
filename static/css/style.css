@@ -1,3 +1,13 @@
+/*Flash messages to the user*/
+
+.flashes{
+    background-color: aquamarine;
+}
+
+.flashes h4{
+    
+}
+
 /* Characters list*/
 .col-lg-6 img{
     width: 100%;

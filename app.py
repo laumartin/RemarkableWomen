@@ -35,7 +35,21 @@ def home():
 
 @app.route("/characters")
 def characters():
+    # find all docs from woman_card collection in mongodb
+    # and assign them to characters variable
     characters = mongo.db.woman_card.find()
+    # the 1st characters is what the template will use and
+    # the 2nd is the variable defined above
+    return render_template("characters.html", characters=characters)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    # wil request the query name attribute from the form in characters.html
+    query = request.form.get("query")
+    # find docs from woman_card collection performing a $search on any
+    # $text index for this collection using the query variable
+    characters = list(mongo.db.woman_card.find({"$text": {"$search": query}}))
     return render_template("characters.html", characters=characters)
 
 

@@ -1,3 +1,10 @@
+/* body*/
+body{
+    background-color: #ebeae9;
+    font-family: sans-serif;
+}
+
+
 /*Flash messages to the user*/
 
 .flashes{
@@ -16,22 +23,25 @@
 	margin: 5px;
 	padding: 10px;
 	background-color: #ffdead;
-    color: #231f20;
-    font-family: monospace;
+    color: #232323;
     font-size: 12px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card h4{
+.card-body h4{
     font-size: 18px;
-    color: #8d0134;
+    color: #880000;
+    margin-top: 2px;
 }
 
 .card img{
     max-width: 100%;
-    max-height: 250px;
+    height: 250px;
     position: center;
     overflow: hidden;
-    object-fit: contain;
+    object-fit: cover;
+    margin: 1px;
+    border-radius: 4px;
     
 }
 
@@ -39,12 +49,12 @@
 	width: 100%;
 	text-align: center;
 	text-decoration: none;
-    color: #8d0134;
+    color: #880000;
     border: solid 1px;
 }
 
 .linktext:hover {
-	color: #231f20;
+	color: #232323;
     cursor:pointer;
 }
 

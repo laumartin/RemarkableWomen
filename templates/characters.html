@@ -4,8 +4,8 @@
         <h2>Current List of Women Characters</h2>
     <!-- Search functionallity -->
         
-            <div class="row card">
-                <form action="{{ url_for('search') }}" method="POST" class="col-12">
+            <div class="row card col-12">
+                <form action="{{ url_for('search') }}" method="POST">
                     <div class="col-12">
                         <div class="input-field ">
                             <i class="fas fa-search"></i>
@@ -22,11 +22,12 @@
                     <!-- Filter functionallity by category-->
                    
                     <div class="input-field col-12">
-                        <h4>Filter by Category</h4>
-                        <select id="category_options" name="category_name" multiple>
+                        <h5>Filter by Category</h5>
+                        <label for="category_name">Category</label>
+                        <select class="" id="category_name" name="category_name" multiple>
                             <option value="" selected disabled>Select</option>
                             {% for category in categories %}
-                                <option value="{{category._id}}">category.category_name</option>
+                                <option value="{{category.category_name}}">{{category.category_name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -39,8 +40,9 @@
            <div class="row">
                 {% for character in characters %}
                     <div class="card card-body col-lg-3">
-                        <img src="{{ character.image }}" alt="{{ character.woman_name }}">
                         <h4>{{ character.woman_name }}</h4>
+                        <img src="{{ character.image }}" alt="{{ character.woman_name }}">
+                        
                         <h5>Category</h5><p class="">{{ character.category_name }}</p>
                         <h5>Skilled Area</h5><p class="">{{ character.area_name }}</p>
                         <div class="fulltext">

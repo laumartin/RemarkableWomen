@@ -78,7 +78,7 @@ def search(query):
 
         characters = mongo.db.woman_card.find(query)
 
-    category_options = mongo.db.categories.find()
+    category_options = mongo.db.categories.find(query)
     return render_template(
         "characters.html", category_name=category_name, query=query)
 '''

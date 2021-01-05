@@ -210,6 +210,7 @@ def add_character():
 # This function retrieve a character from the db that we want to edit by its ID
 def edit_character(character_id):
     if request.method == "POST":
+        print(request.form)
         submit_edit = {
             # this use the name attributes from the character form to grab data
             # and that's what gets stored into mongo db in a dictionary
@@ -238,7 +239,7 @@ def edit_character(character_id):
     # display list of skills options from mongo db for checkbox character form
     countries = mongo.db.countries.find().sort("country_name", 1)
     area = list(mongo.db.skilled_area.find({}, {"area_name"}))
-
+    #print(character)
     return render_template(
         "edit_character.html", character=character, categories=categories,
         countries=countries, skilled_area=area)

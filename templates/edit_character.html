@@ -4,8 +4,8 @@
     <form class="needs-validation" novalidate method="POST" action="{{ url_for('edit_character', character_id=character._id) }}">
         <div class="form-row">
             <div class="form-group col-auto">
-                <label for="character_name">Character Name</label>
-                <input value="{{ character.woman_name }}" type="text" class="form-control" id="character_name" name="character_name" placeholder="Woman Character Name" aria-describedby="inputGroupPrepend" minlength="2" maxlenght="25" required>
+                <label for="woman_name">Character Name</label>
+                <input value="{{ character.woman_name }}" type="text" class="form-control" id="woman_name" name="woman_name" placeholder="Woman Character Name" aria-describedby="inputGroupPrepend" minlength="2" maxlenght="25" required>
                 <div class="invalid-feedback">
                 Please choose a character name.
                 </div>
@@ -50,7 +50,7 @@
             
         <div class="form-group form-row col-6">
             <div class="form-check">
-                <input class="form-check-input" value="{{ character.area_name}}" selected type="checkbox" id="area_name" name="area_name">
+                <input class="form-check-input" value="{{ area.area_name }}" selected type="checkbox" id="area_name" name="area_name">
                 <label class="form-check-label" for="area_name">
                 </label>
         {{ area.area_name }}

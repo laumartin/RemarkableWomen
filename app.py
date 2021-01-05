@@ -1,4 +1,5 @@
 import os
+import ast
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -37,7 +38,7 @@ def home():
 def characters():
     # find all docs from woman_card collection in mongodb
     # and assign them to characters variable
-    characters = mongo.db.woman_card.find()
+    characters = list(mongo.db.woman_card.find())
     # the 1st characters is what the template will use and
     # the 2nd is the variable defined above
     return render_template("characters.html", characters=characters)
@@ -45,12 +46,42 @@ def characters():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    # wil request the query name attribute from the form in characters.html
+    # will request the query name attribute from the form in characters.html
     query = request.form.get("query")
     # find docs from woman_card collection performing a $search on any
     # $text index for this collection using the query variable
     characters = list(mongo.db.woman_card.find({"$text": {"$search": query}}))
     return render_template("characters.html", characters=characters)
+
+# trying to add a filter per category
+'''
+@app.route("/search", methods=["GET", "POST"])
+def search(query):
+    if request.method == "POST":
+        query = {}
+        category_name = request.form.getlist("category_name")
+
+        if category_name:
+            category_list = []
+            for category_name in request.form.getlist("category_name"):
+                category_list.append(ObjectId(category_name))
+            query["category_name"] = {"$all": category_list}
+    else:
+        query = query.replace("ObjectId('", "'").replace(
+            "')", "'").replace("\n", ",")
+        query = ast.literal_eval(query)
+
+        if "category_name" in query.keys():
+            for q in query["category_name"]["$all"]:
+                position = query["category_name"]["$all"].index(q)
+                query["category_name"]["$all"][position] = ObjectId(q)
+
+        characters = mongo.db.woman_card.find(query)
+
+    category_options = mongo.db.categories.find()
+    return render_template(
+        "characters.html", category_name=category_name, query=query)
+'''
 
 
 @app.route("/register", methods=["GET", "POST"])

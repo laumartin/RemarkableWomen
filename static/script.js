@@ -8,7 +8,11 @@ $(document).on("click", '[data-toggle="lightbox"]', function(event) {
 
 // To use the select country bootstrap package 
 $('.countrypicker').countrypicker();
- 
+
+// Characters page see more details of each card toggle
+$("linktext").click(function(){
+    $("fulltext").toggle();
+});
 
 
 

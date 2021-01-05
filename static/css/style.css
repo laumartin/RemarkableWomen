@@ -11,30 +11,36 @@
 /* Characters list*/
 .card{
     flex:1; 
-	display: flex;	
 	flex-flow:column;	
-	min-width: 240px; 
+	min-width: 270px; 
 	margin: 5px;
 	padding: 10px;
-	background-color: #c8accf;
+	background-color: #ffdead;
     color: #231f20;
     font-family: monospace;
     font-size: 12px;
 }
 
+.card h4{
+    font-size: 18px;
+    color: #8d0134;
+}
+
 .card img{
-    width: 100%;
+    max-width: 100%;
     max-height: 250px;
     position: center;
     overflow: hidden;
-    object-fit: cover;
+    object-fit: contain;
+    
 }
 
 .linktext {
 	width: 100%;
-	text-align: left;
+	text-align: center;
 	text-decoration: none;
-	color: #8d0134;
+    color: #8d0134;
+    border: solid 1px;
 }
 
 .linktext:hover {

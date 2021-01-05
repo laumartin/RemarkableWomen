@@ -78,8 +78,8 @@
         <div class="col-lg-2">
             <button class="btn btn-primary" type="submit" aria-label="submit">Edit Character</button>
         </div>
-        <button class="btn" href="{{ url_for('characters')}}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
-        </button>
+        <a class="btn" href="{{ url_for('characters')}}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
+        </a>
     </form>
         {% for character in characters %}
             <p>Added by: {{ character.username }} </p>

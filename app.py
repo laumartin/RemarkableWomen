@@ -44,6 +44,14 @@ def characters():
     return render_template("characters.html", characters=characters)
 
 
+@app.route('/characters/<category_name>')
+def filter_category(category_name):
+    characters = list(mongo.db.woman_card.find(
+        {"category_name": category_name}))
+    return render_template(
+        "characters.html", characters=characters, page_tittle=category_name)
+
+
 @app.route("/search", methods=["GET", "POST"])
 def search():
     # will request the query name attribute from the form in characters.html

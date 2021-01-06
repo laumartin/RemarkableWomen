@@ -5,22 +5,35 @@
     <!-- Search functionallity -->
         
             <div class="row card col-12">
+                
                 <form action="{{ url_for('search') }}" method="POST">
                     <div class="col-12">
                         <div class="input-field ">
                             <i class="fas fa-search"></i>
                             <input type="text" name="query" id="query" minlength="3" required>
-                            <label for="query">Search Female Characters</label>
+                            <label for="query">Search Characters</label>
                         </div>
-                        <div class="col-12">
-                            <a href="{{ url_for('characters') }}" class="btn red">Reset</a>
-                            <button type="submit" class="btn">
+                        <div class="col-12 search-buttons">
+                            <a href="{{ url_for('characters') }}" class="btn btn-reset">Reset</a>
+                            <button type="submit" class="btn btn-search">
                                 <i class="fas fa-search left"></i>Search
                             </button>
                         </div>
                     </div>
                     <!-- Filter functionallity by category-->
-                   
+                    <div class="row category_filter">
+                        <div class="col-2">
+                            <a class="filter" href="{{ url_for('filter_category', category_name='Historical') }}"><i class="fas fa-landmark"></i> Historical</a>
+                        </div>
+                        <div class="col-2">
+                            <a class="filter" href="{{ url_for('filter_category', category_name='Fiction') }}"><i class="fas fa-journal-whills"></i> Fiction</a>
+                        </div>
+                        <div class="col-2">
+                            <a class="filter" href="{{ url_for('filter_category', category_name='Myth') }}"><i class="fas fa-yin-yang"></i> Myth</a>
+                        </div>
+                    </div>
+                    <!-- Filter functionallity by category-->
+                   <!-- 
                     <div class="input-field col-12">
                         <h5>Filter by Category</h5>
                         <label for="category_name">Category</label>
@@ -31,8 +44,9 @@
                             {% endfor %}
                         </select>
                     </div>
-
+                    -->
                 </form>
+                
             </div>
     
         <!--Characters gallery -->

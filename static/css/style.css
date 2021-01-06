@@ -15,6 +15,19 @@ body{
     text-align: center;
 }
 
+/* Navigation */
+
+.navbar-dark{
+    background-color: #232323;
+    color: #ebeae9;
+}
+
+/* Footer */
+
+footer{
+    background-color: #232323;
+}
+
 /* Characters list*/
 .card{
     flex:1; 
@@ -22,10 +35,54 @@ body{
 	min-width: 270px; 
 	margin: 5px;
 	padding: 10px;
-	background-color: #ffdead;
+	background-color: #ffd1b9;
     color: #232323;
     font-size: 12px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search-buttons{
+    padding: 7px 7px;
+    float: left;
+}
+
+.btn-search{
+    border:solid 1px #880000;
+    color: #880000;
+}
+
+.btn-search:hover{
+    background-color: #232323;
+    color: #ebeae9;
+}
+
+.btn-reset{
+    border:solid 1px #880000;
+    color: #880000;
+}
+
+.btn-reset:hover{
+    background-color: #232323;
+    color: #ebeae9;
+}
+
+.category_filter{
+    border: solid, #880000, 1px;
+    margin: auto;
+    
+}
+
+.filter {
+    text-decoration: none;
+    font-size: medium;
+    color: #232323;
+    float: left;
+    
+}
+
+.filter:hover{
+    color: #880000;
+    text-decoration: none;
 }
 
 .card-body h4{
@@ -54,8 +111,9 @@ body{
 }
 
 .linktext:hover {
-	color: #232323;
+	color: #ebeae9;
     cursor:pointer;
+    background-color: #232323;
 }
 
 .fulltext{

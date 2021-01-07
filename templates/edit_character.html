@@ -75,11 +75,11 @@
             <label for="image">Character Image link</label>
             <input value="{{character.image}}" type="url" class="form-control" id="image" name="image" required>
         </div>
-        <div class="col-lg-2">
-            <button class="btn btn-primary" type="submit" aria-label="submit">Edit Character</button>
+        <div class="col-lg-4">
+            <button class="btn" type="submit" aria-label="submit">Edit Character</button>
+            <a class="btn-cancel" href="{{ url_for('characters')}}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
+            </a>
         </div>
-        <a class="btn" href="{{ url_for('characters')}}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
-        </a>
     </form>
         {% for character in characters %}
             <p>Added by: {{ character.username }} </p>

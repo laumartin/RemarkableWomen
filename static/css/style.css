@@ -4,7 +4,6 @@ body{
     font-family: sans-serif;
 }
 
-
 /*Flash messages to the user*/
 
 .flashes{
@@ -26,6 +25,14 @@ body{
 
 footer{
     background-color: #232323;
+    color: #232323;
+}
+
+/* Home */
+
+.bg-header{
+    background-color: #ffd1b9;
+
 }
 
 /* Characters list*/
@@ -75,13 +82,13 @@ footer{
 .filter {
     text-decoration: none;
     font-size: medium;
-    color: #232323;
+    color: #880000;
     float: left;
     
 }
 
 .filter:hover{
-    color: #880000;
+    color: #232323;
     text-decoration: none;
 }
 

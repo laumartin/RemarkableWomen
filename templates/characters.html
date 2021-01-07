@@ -21,7 +21,8 @@
                         </div>
                     </div>
                     <!-- Filter functionallity by category-->
-                    <div class="row category_filter">
+                    <div class="row col-10 category_filter">
+                        Filter category
                         <div class="col-2">
                             <a class="filter" href="{{ url_for('filter_category', category_name='Historical') }}"><i class="fas fa-landmark"></i> Historical</a>
                         </div>
@@ -32,19 +33,7 @@
                             <a class="filter" href="{{ url_for('filter_category', category_name='Myth') }}"><i class="fas fa-yin-yang"></i> Myth</a>
                         </div>
                     </div>
-                    <!-- Filter functionallity by category-->
-                   <!-- 
-                    <div class="input-field col-12">
-                        <h5>Filter by Category</h5>
-                        <label for="category_name">Category</label>
-                        <select class="" id="category_name" name="category_name" multiple>
-                            <option value="" selected disabled>Select</option>
-                            {% for category in categories %}
-                                <option value="{{category.category_name}}">{{category.category_name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    -->
+                   
                 </form>
                 
             </div>
@@ -71,10 +60,17 @@
                             
                         <!-- If the session user is = to the character's username variable, both in lowecase for comparison, then the buttons will be shown-->
                         {% if session.user | lower == character.username | lower %}
-                        <div>
-                            <a href="{{ url_for('edit_character', character_id=character._id) }}" class="btn-default">Edit</a>
-                            <a href="{{ url_for('delete_character', character_id=character._id) }}" class="btn-default">Delete</a>
-                        </div>
+                            <div>
+                                <a href="{{ url_for('edit_character', character_id=character._id) }}" class="btn">Edit</a>
+                                <a href="{{ url_for('delete_character', character_id=character._id) }}" class="btn">Delete</a>
+                            </div>
+                            
+                        {% endif %}
+                        {% if session.user %}
+                            <a class="btn" href="{{url_for('add_favourites', character_id=character._id)}}" title="add to favourites" aria-label="add to favourites">
+                                <i class="fas fa-heart"></i>Add Fav</a>
+                        {% else %}
+                            <a class="btn" href="{{url_for('add_favourites', character_id=character._id)}}"title="delete from favourites"><i class="fas fa-minus"></i>Remove Fav</a>
                         {% endif %}
                     </div>
                 {% endfor %}

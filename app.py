@@ -61,36 +61,6 @@ def search():
     characters = list(mongo.db.woman_card.find({"$text": {"$search": query}}))
     return render_template("characters.html", characters=characters)
 
-# trying to add a filter per category
-'''
-@app.route("/search", methods=["GET", "POST"])
-def search(query):
-    if request.method == "POST":
-        query = {}
-        category_name = request.form.getlist("category_name")
-
-        if category_name:
-            category_list = []
-            for category_name in request.form.getlist("category_name"):
-                category_list.append(ObjectId(category_name))
-            query["category_name"] = {"$all": category_list}
-    else:
-        query = query.replace("ObjectId('", "'").replace(
-            "')", "'").replace("\n", ",")
-        query = ast.literal_eval(query)
-
-        if "category_name" in query.keys():
-            for q in query["category_name"]["$all"]:
-                position = query["category_name"]["$all"].index(q)
-                query["category_name"]["$all"][position] = ObjectId(q)
-
-        characters = mongo.db.woman_card.find(query)
-
-    category_options = mongo.db.categories.find(query)
-    return render_template(
-        "characters.html", category_name=category_name, query=query)
-'''
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -112,7 +82,8 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "favourites": []
             }
         # call the users collection on MongoDB and use insert_one() method
         mongo.db.users.insert_one(register)
@@ -156,19 +127,62 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/add/favourites/<character_id>")
+def add_favourites(character_id):
+    if session["user"]:
+        the_user = {'username': session['user'].lower()}
+        favourite_characters = mongo.db.users.find_one(the_user)["favourites"]
+        if ObjectId(character_id) in favourite_characters:
+            flash("Already in favourites")
+            return redirect(url_for("characters"))
+        profile = mongo.db.users.find_one(
+            {'username': session["user"].lower()})
+        mongo.db.users.update_one(
+            profile, {"$push": {"favourites": ObjectId(character_id)}})
+        flash("Character added to Favourites")
+        return redirect(url_for('characters'))
+    return redirect(url_for("characters"))
+
+
+@app.route("/delete/favourites/<character_id>")
+def delete_favourites(character_id):
+    profile = mongo.db.users.find_one(
+        {'username': session["user"].lower()})
+    mongo.db.users.update_one(
+            profile, {"$pull": {"favourites": ObjectId(character_id)}})
+    flash("Removed from favourites")
+    return redirect(url_for("characters"))
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # creates new username var, that is the user from db on the registered
     # users collection. The session variable in [] called 'user' for
     # consistency, and we only grab the username key field from the db record
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        {"username": session["user"]})
+    user_fav = username["favourites"]
+    fav_character = []
+    fav_character_id = []
+
+    if len(username['favourites']) != 0:
+        for fav in user_fav:
+            character = mongo.db.woman_card.find_one({"_id": fav})
+            character_id = character["_id"]
+            fav_character_id.append(character_id)
+    for fav in user_fav:
+        character = mongo.db.woman_card.find_one({"_id": fav})
+        fav_character.append(character)
     # to avoid user's force the URL to someone else's profile create condition
     # so that only if the user session cookie is true, then return the profile.
     if session["user"]:
         # 1st username is what the template expects to retrieve in html file
         # the second username is the variable defined above
-        return render_template("profile.html", username=username)
+        return render_template("profile.html",
+                               fav_character_id=fav_character_id,
+                               fav_character=fav_character,
+                               username=mongo.db.users.find_one(
+                                {'username': session['user']}))
     return redirect(url_for("login"))
 
 

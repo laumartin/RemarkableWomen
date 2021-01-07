@@ -4,15 +4,51 @@
         <div class="col-10 md-8 offset-md-1 mt-3 mb-3">
             <div class="card">
                 <div class="card-body text-center">
+                    {% if user in users %}
                     <h5 class="card-tittle">{{ username }}'s Profile</h5>
                     
+                    {% endif %}
                 </div>
             </div>
-            
+            <div class="card">
+                <h5>Your favourite Woman Characters</h5>
+                {% if (username['favourites']).count == 0 %}
+                    <p>There is no character added yet to your favourites</p>
+                    <a href="{{url_for('characters')}}">See current list in our collection</a>
+                {% else %}
+                    <div class="row">
+                        {% for character in fav_character %}
+                            <div class="col-lg-4">
+                                <a class="" href="{{url_for('characters', character_id=character._id)}}"></a>
+                                <div class="card card-body col-lg-3">
+                                    <h4>{{ character.woman_name }}</h4>
+                                    <img src="{{ character.image }}" alt="{{ character.woman_name }}">
+                                    
+                                    <h5>Category</h5><p class="">{{ character.category_name }}</p>
+                                    <h5>Skilled Area</h5><p class="">{{ character.area_name }}</p>
+                                    <div class="fulltext">
+                                        <h5>Year of Birth</h5><p class="">{{ character.year }}</p>
+                                        <h5>Country</h5><p class="">{{ character.country_name }}</p>
+                                        <h5>Quote</h5><p class="">'{{ character.quote }}'</p>
+                                        <h5>Story</h5><p class="">{{ character.story }}</p>
+                                        <p class=""><a href="{{ character.more_link }}" target="_blank" title="Know more">More Info</a></p>
+                                        <p class=""><em>Added by: {{ character.username }}</em></p>
+                                    </div>
+                                    <button class="btn linktext" type="button">See full details</button>
+                                        
+                                    <div>
+                                        {% if character in fav_character %}
+                                            <a href="{{url_for('delete_favourites', character_id=character._id, value=character._id)}}" class="btn"><i class="fas fa-minus"></i> Remove Fav</a>
+                                       
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+                {% endif %}
         </div>
         
     </div>
-
 {% endblock %}
-    
-   

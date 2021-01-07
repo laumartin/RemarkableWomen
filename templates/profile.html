@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="row">
-        <div class="col-10 md-8 offset-md-1 mt-3 mb-3">
+        <div class="col-10 offset-md-1 mt-5 py-5 mb-5">
             <div class="card">
                 <div class="card-body text-center">
                     {% if user in users %}
@@ -12,10 +12,7 @@
             </div>
             <div class="card">
                 <h5>Your favourite Woman Characters</h5>
-                {% if (username['favourites']).count == 0 %}
-                    <p>There is no character added yet to your favourites</p>
-                    <a href="{{url_for('characters')}}">See current list in our collection</a>
-                {% else %}
+                
                     <div class="row">
                         {% for character in fav_character %}
                             <div class="col-lg-4">
@@ -39,15 +36,20 @@
                                     <div>
                                         {% if character in fav_character %}
                                             <a href="{{url_for('delete_favourites', character_id=character._id, value=character._id)}}" class="btn"><i class="fas fa-minus"></i> Remove Fav</a>
-                                       
+                                        
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
+                        {% else %}
+                        <div class="col-12">
+                            <p>There is no character added yet to your favourites</p>
+                            <a href="{{url_for('characters')}}">See current list in our collection</a>
+                        </div>
                         {% endfor %}
                         
                     </div>
-                {% endif %}
+                
         </div>
         
     </div>

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3> Add a new Character to our list</h3>
+<div class="row col-12 mt-5 py-4">   
     <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_character') }}">
+        <h3> Add a new Character to our list</h3>
         <div class="form-row">
             <div class="form-group col-auto">
                 <label for="woman_name">Character Name</label>
@@ -74,7 +75,7 @@
         {% for character in characters %}
             <p>Added by: {{ character.username }} </p>
         {% endfor %} 
-
+</div> 
 
 
 {% endblock %}

@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="row">
-        <form class="col-10 md-8 offset-md-1 mt-3 mb-3" method="POST" action="{{ url_for('login') }}">
+        <form class="col-10 offset-md-1 mt-5 mb-5 py-5" method="POST" action="{{ url_for('login') }}">
             <div class="card">
-                <div class="card-header">
-                    User Log In
-                </div>
                 <div class="card-body text-center">
                     <h5 class="card-tittle">User Details</h5>
                     <!--User Name -->
@@ -34,6 +31,7 @@
             </div>
             
         </form>
+        <div class="row mb-5"></div>
         
     </div>
 

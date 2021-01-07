@@ -22,11 +22,21 @@ body{
 }
 
 /* Footer */
+.bottomspace{
+    margin: 0 auto 255px;
+    height: 100%;
+}
 
 footer{
     background-color: #232323;
     color: #232323;
+    position: fixed;
+    bottom: 0px;
+    height: 155px;
+    width: 100%;
+    
 }
+
 
 /* Home */
 

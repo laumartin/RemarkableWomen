@@ -76,7 +76,11 @@
                     </div>
                 {% endfor %}
             </div>
-        
+            <!-- Pagination -->
+            <div class="col-12">
+                {{ pagination.info }}
+                {{ pagination.links }}
+            </div>
     <!-- if no characters where found in the search -->
          {% else %}
             <h3 class="red-text">No results found </h3>

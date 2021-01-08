@@ -1,5 +1,4 @@
 import os
-import ast
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -8,6 +7,7 @@ from flask_pymongo import PyMongo
 # ObjectId from BSON,allows render MongoDB docs by their ID.
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_paginate import Pagination, get_page_args
 if os.path.exists("env.py"):
     import env
 
@@ -34,14 +34,39 @@ def home():
     return render_template("home.html")
 
 
+def pag_characters(characters):
+    # Use flask_pagination to display 12 character cards per page
+    # Page pagination is imported from flask
+    page, per_page, offset = get_page_args(
+                        page_parameter='page', per_page_parameter='per_page')
+    # Total of characters in the list
+    total = len(characters)
+    limit = 12
+    offset = page * limit - limit
+    return characters[offset: offset + limit]
+
+
+def pagination_arg(characters):
+    page, per_page, offset = get_page_args(
+                        page_parameter='page', per_page_parameter='per_page')
+    # Total of characters in the list
+    total = len(characters)
+    # Pagination parameters
+    return Pagination(
+        page=page, per_page=12, total=total, css_framework='bootstrap')
+
+
 @app.route("/characters")
 def characters():
     # find all docs from woman_card collection in mongodb
     # and assign them to characters variable
     characters = list(mongo.db.woman_card.find())
+    characters_paginated = pag_characters(characters)
+    pagination = pagination_arg(characters)
     # the 1st characters is what the template will use and
     # the 2nd is the variable defined above
-    return render_template("characters.html", characters=characters)
+    return render_template("characters.html", characters=characters_paginated,
+                           pagination=pagination)
 
 
 @app.route('/characters/<category_name>')

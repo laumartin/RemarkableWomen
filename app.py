@@ -228,7 +228,7 @@ def add_character():
         skilled_area=area)
 
 
-@app.route("/edit_character/<character_id>", methods=["GET","POST"])
+@app.route("/edit_character/<character_id>", methods=["GET", "POST"])
 # This function retrieve a character from the db that we want to edit by its ID
 def edit_character(character_id):
     if request.method == "POST":

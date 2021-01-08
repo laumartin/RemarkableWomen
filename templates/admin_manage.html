@@ -54,7 +54,7 @@
                         <div class="row">
                             <!-- I deleted the edit button for areas since is not working-->
                             <div class="col-2">
-
+                                <a href="{{ url_for('edit_area', area_id=area._id) }}" class="btn btn-action">Edit</a>
                             </div>
                             <div class="col-2">
                                 <a href="{{ url_for('delete_area', area_id=area._id) }}" class="btn btn-action">Delete</a>

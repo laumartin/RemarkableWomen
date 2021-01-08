@@ -68,22 +68,12 @@ footer{
     background-color: #ffd1b9;
 }
 
-.btn-search{
+.btn-action{
     border:solid 1px #880000;
     color: #880000;
 }
 
-.btn-search:hover{
-    background-color: #232323;
-    color: #ebeae9;
-}
-
-.btn-reset{
-    border:solid 1px #880000;
-    color: #880000;
-}
-
-.btn-reset:hover{
+.btn-action:hover{
     background-color: #232323;
     color: #ebeae9;
 }

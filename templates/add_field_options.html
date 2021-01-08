@@ -1,38 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3> Add a new Category</h3>
-    <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_category') }}">
-        <div class="form-row">
-            
-            <div class="form-group col-auto">
-                <label for="category_name">Category Name</label>
-                <input id="category_name" name="category_name" type="text" required>
+    <div class="row">
+        <div class="col-10 offset-1 mt-5 py-5 mb-5">
+            <h3> Add a new Category</h3>
+            <div class="card">
+                <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_category') }}">
+                    <div class="form-row">
+                        <div class="form-group col-auto">
+                            <label for="category_name">Category Name</label>
+                            <input id="category_name" name="category_name" type="text" required>
+                        </div>
+                    </div>
+                        <div class="col-6">
+                            <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <a class="btn-cancel" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel">
+                                <i class="fas fa-times-circle icon-btn"></i> Cancel
+                            </a>
+                        </div>
+                </form>
+            </div>
+
+            <h3> Add a new Skill Area</h3>
+            <div class="card">
+                <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_area') }}">
+                    <div class="form-row">
+                        <div class="form-group col-auto">
+                            <label for="area_name">Skilled Area</label>
+                            <input type="text" id="area_name" name="area_name" required>
+                        </div>     
+                    </div>
+                    
+                    <div class="col-6">
+                        <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <a class="btn-cancel" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel">
+                            <i class="fas fa-times-circle icon-btn"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+                
             </div>
         </div>
-        <div class="col-lg-2">
-            <button class="btn btn-primary" type="submit" aria-label="submit">Submit Changes</button>
-        </div>
-        
-    </form>
-    <a class="btn" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
-    </a>
-    
-    <h3> Add a new Skilled</h3>
-    <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_area') }}">
-        <div class="form-row">
-            
-            <div class="form-group col-auto">
-                <label for="area_name">Skilled Area</label>
-                <input type="text" id="area_name" name="area_name" required>
-            </div>     
-        </div>
-        
-        <div class="col-lg-2">
-            <button class="btn btn-primary" type="submit" aria-label="submit">Submit Changes</button>
-         </div>
-        
-    </form>
-     <a class="btn" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
-    </a>
-
+    </div>
 {% endblock %}

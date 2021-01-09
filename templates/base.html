@@ -22,31 +22,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <!-- Flask Jinja template. url_for() function looks up the view called home())and injects some text, 
                         which is the actual root.-->
-                        <a class="nav-link" href="{{ url_for('home') }}">Home
+                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('home') }}">Home
                         <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('characters') }}">Woman Characters List</a>
+                        <a class="nav-link {% block nav_characters %}{% endblock %}" href="{{ url_for('characters') }}">Woman Characters List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('statistics') }}">Statistics</a>
+                        <a class="nav-link {% block nav_statistics %}{% endblock %}" href="{{ url_for('statistics') }}">Statistics</a>
                     </li>
                     <!--Profile, Add new character, Admin Manage and Log Out navigation links should only be
                     visible for logged users-->
                     {% if session.user %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                            <a class="nav-link {% block nav_profile %}{% endblock %}" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('add_character') }}">Add New Character</a>
+                            <a class="nav-link {% block nav_add_character %}{% endblock %}" href="{{ url_for('add_character') }}">Add New Character</a>
                         </li>
                         {% if session.user | lower == "admin" | lower %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('get_fields') }}">Admin Manage</a>
+                                <a class="nav-link {% block nav_admin %}{% endblock %}" href="{{ url_for('get_fields') }}">Admin Manage</a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
@@ -55,10 +55,10 @@
                     <!-- Login and register navigation links should only be visible for not logged users-->
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
+                            <a class="nav-link {% block nav_login %}{% endblock %}" href="{{ url_for('login') }}">Log In</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                            <a class="nav-link {% block nav_register %}{% endblock %}" href="{{ url_for('register') }}">Register</a>
                         </li>
                     {% endif %}
                     

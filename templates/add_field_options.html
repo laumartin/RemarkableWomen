@@ -1,18 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="row">
-        <div class="col-10 offset-1 mt-5 py-5 mb-5">
+    <div class="row mt-5 py-4">
+        <div class="col-10 offset-1 mt-5">
             <h3> Add a new Category</h3>
             <div class="card">
                 <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_category') }}">
                     <div class="form-row">
                         <div class="form-group col-auto">
                             <label for="category_name">Category Name</label>
-                            <input id="category_name" name="category_name" type="text" required>
+                            <!-- Only if admin gets to this page after clicking add category button in previous page, this section will be editable-->
+                            {% if request.endpoint == 'add_area' %}
+                                <input id="category_name" name="category_name" type="text" disabled>
+                            {% else %}
+                                <input id="category_name" name="category_name" type="text" required>
+                            {% endif %}
                         </div>
                     </div>
                         <div class="col-6">
+                            <!-- Only if admin gets to this page after clicking add category button in previous page, this button will be active-->
+                            {% if request.endpoint == 'add_area' %}
+                                <button class="btn btn-action" type="submit" aria-label="submit" disabled>Submit Changes</button>
+                            {% else %}
                             <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                            {% endif %}
                         </div>
                         <div class="col-6 mt-2">
                             <a class="btn-cancel" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel">
@@ -21,19 +31,32 @@
                         </div>
                 </form>
             </div>
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
             <h3> Add a new Skill Area</h3>
             <div class="card">
                 <form class="needs-validation" novalidate method="POST" action="{{ url_for('add_area') }}">
                     <div class="form-row">
                         <div class="form-group col-auto">
                             <label for="area_name">Skilled Area</label>
-                            <input type="text" id="area_name" name="area_name" required>
+                            <!-- Only if admin gets to this page after clicking add area button in previous page, this section will be editable-->
+                            {% if request.endpoint == 'add_category' %}
+                                <input type="text" id="area_name" name="area_name" disabled>
+                            {% else %}
+                                <input type="text" id="area_name" name="area_name" required>
+                            {% endif %}
                         </div>     
                     </div>
-                    
+                        
                     <div class="col-6">
-                        <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                        <!-- Only if admin gets to this page after clicking add area button in previous page, this button will be active-->
+                        {% if request.endpoint == 'add_category' %}
+                            <button class="btn btn-action" type="submit" aria-label="submit" disabled>Submit Changes</button>
+                        {% else %}
+                            <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                        {% endif %}
                     </div>
                     <div class="col-6 mt-2">
                         <a class="btn-cancel" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel">
@@ -41,8 +64,8 @@
                         </a>
                     </div>
                 </form>
-                
             </div>
         </div>
     </div>
+    
 {% endblock %}

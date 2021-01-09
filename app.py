@@ -341,7 +341,6 @@ def edit_category(category_id):
         submit_category_changes = {
             "category_name": request.form.get("category_name")
         }
-       
         # update method on mongodb categories collection takes 2 dictionaries.
         # The 1st dictionary defines the category to update by targeting
         # category_id being sent to edit_category function.
@@ -379,7 +378,6 @@ def edit_area(area_id):
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
     return render_template(
         "edit_field_options.html", area=area, category=category)
-
 
 
 @app.route("/delete_category/<category_id>")

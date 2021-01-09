@@ -7,17 +7,26 @@
             <div class="form">
                 <div class="form-group col-auto">
                     <label for="category_name">Category Name</label>
-                    <input id="category_name" name="category_name" type="text" value="{{ category.category_name}}">
+                    <!-- Only if admin gets to this page after clicking edit category button in previous page, this section will be editable-->
+                    {% if request.endpoint == 'edit_area' %}
+                        <input id="category_name" name="category_name" type="text" value="{{ category.category_name}}" disabled>
+                    {% else %}
+                        <input id="category_name" name="category_name" type="text" value="{{ category.category_name}}">
+                    {% endif %}
                 </div>
             </div>
+            <!-- Only if admin gets to this page after clicking edit category button in previous page, this button will be active-->
+            {% if request.endpoint == 'edit_area' %}
+                <button class="btn btn-action" type="submit" aria-label="submit" disabled>Submit Changes</button>
+            {% else %}
                 <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+            {% endif %}
                 <a class="btn-cancel ml-3" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
                 </a>
         </form>
     </div>
 </div>
 
-    <!-- The area edit is not working and this interferes for category edit to work, if I delete this below, category edit works-->
 <div class="row">
     <div class="card col-4 center-align">
         <h3> Edit Skill Area</h3>
@@ -25,10 +34,20 @@
             <div class="form">
                 <div class="form-group col-auto">
                     <label for="area_name">Skilled Area</label>
-                    <input type="text" id="area_name" name="area_name" value="{{area.area_name}}">
+                    <!-- Only if admin gets to this page after clicking edit area button in previous page, this section will be editable-->
+                    {% if request.endpoint == 'edit_category' %}
+                        <input type="text" id="area_name" name="area_name" value="{{area.area_name}}" disabled>
+                    {% else %}
+                        <input type="text" id="area_name" name="area_name" value="{{area.area_name}}">
+                    {% endif %}
                 </div>     
             </div>
-                <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+            <!-- Only if admin gets to this page after clicking edit area button in previous page, this button will be active-->
+                {% if request.endpoint == 'edit_category' %}
+                    <button class="btn btn-action" type="submit" aria-label="submit" disabled>Submit Changes</button>
+                {% else %}
+                    <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                {% endif %}
                 <a class="btn-cancel ml-3" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
                 </a>
         </form>

@@ -34,9 +34,25 @@ footer{
     bottom: 0px;
     height: 155px;
     width: 100%;
-    
 }
 
+footer ul li a {
+    color: #ffd1b9; 
+}
+
+footer ul li a:hover {
+    color: #880000;
+}
+
+footer ul li a i span{
+    color: #ffd1b9;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+footer ul li a i span:hover{
+    color: #880000;
+}
 
 /* Home */
 
@@ -171,3 +187,9 @@ input:focus:invalid {
 }
 
 /* Statistics */
+
+/* Error Page */
+.error{
+    background-color: #232323;
+    color: #ffd1b9;
+}

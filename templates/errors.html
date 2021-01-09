@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="error">
+        <i class="fas fa-sad"></i>
+        <h2>Something went wrong. The page you try to reach does not exist</h2>
+        <p>{{ error_text }} Como back to home page <a href="{{ url_for('home') }}">HERE</a></p> 
+    </div>
+
+{% endblock %}

@@ -103,6 +103,13 @@ def register():
             # to try again with another username.
             return redirect(url_for("register"))
 
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_email:
+            flash("Email already exists, please choose a different one")
+            return redirect(url_for("register"))
+
         # if no existing user,take data from form into the register dictionary
         register = {
             "username": request.form.get("username").lower(),
@@ -399,6 +406,12 @@ def delete_area(area_id):
 def statistics():
 
     return render_template("statistics.html")
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    error_text = str(error)
+    return render_template("errors.html", error_text=error_text), 404
 
 
 # __main__ is the name of the default module in Python.

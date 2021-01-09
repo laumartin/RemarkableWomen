@@ -70,8 +70,7 @@
                         {% if session.user %}
                             <a class="btn" href="{{url_for('add_favourites', character_id=character._id)}}" title="add to favourites" aria-label="add to favourites">
                                 <i class="fas fa-heart"></i>Add Fav</a>
-                        {% else %}
-                            <a class="btn" href="{{url_for('add_favourites', character_id=character._id)}}"title="delete from favourites"><i class="fas fa-minus"></i>Remove Fav</a>
+                        
                         {% endif %}
                     </div>
                 {% endfor %}

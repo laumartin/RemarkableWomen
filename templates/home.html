@@ -26,7 +26,11 @@
                 </p>
             </div>
             <div class="col-md-4 mb-5">
-                <a class="btn linktext" href="{{ url_for('login') }}">Add Yours! &raquo;</a>
+                {% if session.user %}
+                    <a class="btn linktext" href="{{ url_for('characters') }}">Add Yours! &raquo;</a>
+                {% else %}
+                    <a class="btn linktext" href="{{ url_for('login') }}">Add Yours! &raquo;</a>
+                {% endif %}
                 <hr>
                 <p>
                 <strong>Every gender</strong> is welcome to contribute by adding a female character that you consider should be 

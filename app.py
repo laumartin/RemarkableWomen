@@ -189,7 +189,6 @@ def profile(username):
     user_fav = username["favourites"]
     fav_character = []
     fav_character_id = []
-
     if len(username['favourites']) != 0:
         for fav in user_fav:
             character = mongo.db.woman_card.find_one({"_id": fav})
@@ -203,11 +202,11 @@ def profile(username):
     if session["user"]:
         # 1st username is what the template expects to retrieve in html file
         # the second username is the variable defined above
+        user_profile = mongo.db.users.find_one({"username": session["user"]})
         return render_template("profile.html",
                                fav_character_id=fav_character_id,
                                fav_character=fav_character,
-                               username=mongo.db.users.find_one(
-                                {'username': session['user']}))
+                               username=username, user=user_profile)
     return redirect(url_for("login"))
 
 

@@ -341,6 +341,7 @@ def edit_category(category_id):
         submit_category_changes = {
             "category_name": request.form.get("category_name")
         }
+       
         # update method on mongodb categories collection takes 2 dictionaries.
         # The 1st dictionary defines the category to update by targeting
         # category_id being sent to edit_category function.
@@ -354,9 +355,12 @@ def edit_category(category_id):
     # on categories collection using objectId this will render
     # as BSON in order to properly display between mongodb and flask
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    area_id = mongo.db.skilled_area.find_one("_id")
+    area = mongo.db.skilled_area.find_one({"_id": ObjectId(area_id)})
     # the template is expecting 'category' variable to specify which category
     # is being updated on the form, and set that = to the new variable above
-    return render_template("edit_field_options.html", category=category)
+    return render_template(
+        "edit_field_options.html", category=category, area=area)
 
 
 # we replicate the same from edit_category function for the skills area
@@ -371,7 +375,11 @@ def edit_area(area_id):
         flash("Skills Area Updated")
         return redirect(url_for("get_fields"))
     area = mongo.db.skilled_area.find_one({"_id": ObjectId(area_id)})
-    return render_template("edit_field_options.html", area=area)
+    category_id = mongo.db.categories.find_one("_id")
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template(
+        "edit_field_options.html", area=area, category=category)
+
 
 
 @app.route("/delete_category/<category_id>")

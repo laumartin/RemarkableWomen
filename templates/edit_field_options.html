@@ -1,39 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3> Edit Category</h3>
-    <form  method="POST" action="{{ url_for('edit_category', category_id=category._id) }}">
-        <div class="form-row">
-            
-            <div class="form-group col-auto">
-                <label for="category_name">Category Name</label>
-                <input id="category_name" name="category_name" type="text" value="{{ category.category_name}}" required>
+<div class="row mt-5 py-4">
+    <div class="card col-4 center-align">
+        <h3 class="center-align"> Edit Category</h3>
+        <form  method="POST" action="{{ url_for('edit_category', category_id=category._id) }}">
+            <div class="form">
+                <div class="form-group col-auto">
+                    <label for="category_name">Category Name</label>
+                    <input id="category_name" name="category_name" type="text" value="{{ category.category_name}}">
+                </div>
             </div>
-        </div>
-        <div class="col-lg-2">
-            <button class="btn btn-primary" type="submit" aria-label="submit">Submit Changes</button>
-        </div>
-        
-    </form>
-    <a class="btn" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
-    </a>
-    
+                <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                <a class="btn-cancel ml-3" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
+                </a>
+        </form>
+    </div>
+</div>
+
     <!-- The area edit is not working and this interferes for category edit to work, if I delete this below, category edit works-->
-    <h3> Edit Skill Area</h3>
-    <form class="needs-validation" novalidate method="POST" action="{{ url_for('edit_area', area_id=area._id) }}">
-        <div class="form-row">
-            
-            <div class="form-group col-auto">
-                <label for="area_name">Skilled Area</label>
-                <input type="text" id="area_name" name="area_name" value="{{area.area_name}}" required>
-            </div>     
-        </div>
-        
-        <div class="col-lg-2">
-            <button class="btn btn-primary" type="submit" aria-label="submit">Submit Changes</button>
-         </div>
-    </form>
-    <a class="btn" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
-    </a>
-    
+<div class="row">
+    <div class="card col-4 center-align">
+        <h3> Edit Skill Area</h3>
+        <form class="needs-validation" novalidate method="POST" action="{{ url_for('edit_area', area_id=area._id) }}">
+            <div class="form">
+                <div class="form-group col-auto">
+                    <label for="area_name">Skilled Area</label>
+                    <input type="text" id="area_name" name="area_name" value="{{area.area_name}}">
+                </div>     
+            </div>
+                <button class="btn btn-action" type="submit" aria-label="submit">Submit Changes</button>
+                <a class="btn-cancel ml-3" href="{{ url_for('get_fields') }}" aria-label="cancel" title="cancel"><i class="fas fa-times-circle icon-btn"></i> Cancel
+                </a>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

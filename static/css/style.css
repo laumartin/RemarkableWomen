@@ -141,6 +141,20 @@ footer{
     display: none;
 }
 
+.pagination-page-info{
+    color: #880000;
+    padding-left: 2px;
+    padding: .1em .25em;
+}
+
+.page-link {
+    color: #232323;
+}
+
+li.page-item.active{
+    background-color: #232323;
+    color: #ffd1b9;
+}
 
 /* Register Form */
 input:required:valid {

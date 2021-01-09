@@ -53,7 +53,7 @@ def pagination_arg(characters):
     total = len(characters)
     # Pagination parameters
     return Pagination(
-        page=page, per_page=12, total=total, css_framework='bootstrap')
+        page=page, per_page=12, total=total, css_framework='bootstrap4')
 
 
 @app.route("/characters")

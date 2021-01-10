@@ -89,7 +89,7 @@ Sources:
 #### Requirements:
 Whenever installing new packages, the requirements.txt file must be updated so that Heroku knows we require more to run the app.
     
-Packages:
+<strong>Packages:</strong>
 The following packages have to be imported at the beggining of app.py file:
 
 * flask: Using the following: flash: to show text messages after a function is executed.
@@ -121,7 +121,7 @@ The following packages have to be imported at the beggining of app.py file:
 
 * env : to grab the hidden environment variables, only if env.py file exists in our root directory.
     
-Database MONGODB Connection:
+<strong>Database MONGODB Connection:</strong>
 
 Navigate to 'mongodb.com create an account and after loggin in, start by creating a Cluster service that our database will run on.
 
@@ -160,15 +160,22 @@ Countries list imported into countries collection in MongoDB:
 #### Planning:
 
 The initial idea was to have not many sections and a simple layout so no wireframes were used and not many navigation options included as it should be focussed on the database and having the following expected functions:
+
     - Navigation depends on if user is logged or not and type of user (admin or normal)
+
     - The website protects the users information by registering and security functionality derived from werkzeug package.
-    - The users can interact with the elements visible on the page, by adding new characters in a form, editing the ones they have already created or adding others to their favourites collection. The admin additionally can edit/create/delete category and skill area fields.
+
+    - The users can interact with the elements visible on the page, by adding new characters in a form, editing the ones they have already created or adding others to their favourites collection. 
+    The admin additionally can edit/create/delete category and skill area fields.
+
     - The website loads all fields and sections
+
     - The content on the website renders responsibly.
+    
     - The users feel informed and satisfied with the informaton available.
 
-    ### Database Design:
-    The following collections:
+### Database Design:
+The following collections:
     - categories
     - countries
     - skilled_area

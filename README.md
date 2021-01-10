@@ -90,36 +90,36 @@ Sources:
 Whenever installing new packages, the requirements.txt file must be updated so that Heroku knows we require more to run the app.
     
 Packages:
-    The following packages have to be imported at the beggining of app.py file:
+The following packages have to be imported at the beggining of app.py file:
 
-    * flask: Using the following: flash: to show text messages after a function is executed.
+* flask: Using the following: flash: to show text messages after a function is executed.
     
-    * render_template: Allows Flask look inside the templates directory to find the HTML files referenced in the return of the functions.
+* render_template: Allows Flask look inside the templates directory to find the HTML files referenced in the return of the functions.
 
-    * redirect: to use with routing will redirect to a particular function in our Flask app.
+* redirect: to use with routing will redirect to a particular function in our Flask app.
 
-    * request: when a function is called, to set conditions for the requested method GET or POST
+* request: when a function is called, to set conditions for the requested method GET or POST
 
-    * session: to be able to use session() functions to put the user into 'session', like a temporary page cookie.
+* session: to be able to use session() functions to put the user into 'session', like a temporary page cookie.
 
-    * url_for: method to target Python functions name and to point to actual root of a file name.
+* url_for: method to target Python functions name and to point to actual root of a file name.
 
-    * flask-pymongo : Third-party library to get Flask to communicate with MongoDB Atlas.
+* flask-pymongo : Third-party library to get Flask to communicate with MongoDB Atlas.
 
-    * dnsython: package to use the Mongo SRV connection string.
+* dnsython: package to use the Mongo SRV connection string.
 
-    * bson.objectid: MongoDB stores its data in a JSON-like format called BSON. In order to find documents from MongoDB, we need to be able to render the ObjectId
+* bson.objectid: MongoDB stores its data in a JSON-like format called BSON. In order to find documents from MongoDB, we need to be able to render the ObjectId
 
-    * flask-paginate using import Pagination, get_page_args in order to display pagination functionality in the list of characters. 
+* flask-paginate using import Pagination, get_page_args in order to display pagination functionality in the list of characters. 
     Documentation can be found:
 
     <a href="https://pythonhosted.org/Flask-paginate/">here</a>
 
     <a href="https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9">here</a>
 
-    * werkzeug.security : to make user authentication more secure using two main helpers "generate_password_hash", and "check_password_hash" that allow converting the user's password into another string, it will then salt that string with random data
+* werkzeug.security : to make user authentication more secure using two main helpers "generate_password_hash", and "check_password_hash" that allow converting the user's password into another string, it will then salt that string with random data
 
-    * env : to grab the hidden environment variables, only if env.py file exists in our root directory.
+* env : to grab the hidden environment variables, only if env.py file exists in our root directory.
     
 Database MONGODB Connection:
 

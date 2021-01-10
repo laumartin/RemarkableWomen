@@ -407,12 +407,12 @@ def statistics():
 
     return render_template("statistics.html")
 
-'''
+
 @app.errorhandler(404)
 def page_not_found(error):
     error_text = str(error)
     return render_template("errors.html", error_text=error_text), 404
-'''
+
 
 # __main__ is the name of the default module in Python.
 if __name__ == "__main__":

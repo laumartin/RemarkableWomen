@@ -46,10 +46,12 @@
         <div class="row">
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
-                    <img class="card-img-top" src="https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2020/03/06144715/banner-4.jpg" alt="">
+                    <img class="card-img-top" src="https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2020/03/06144715/banner-4.jpg" alt="women table image">
                     <div class="card-body">
                         <h4 class="card-title">Women of Wonder List</h4>
-                        <p class="card-text">Select any of the characters to discover their stories and learn how they have influenced society, culture and history.</p>
+                        <p class="card-text">Select any of the characters to discover their stories and learn how they have influenced society, culture and history.
+                            Here are some of the most influential and important women in history – both famous and lesser-known – that have changed the world.
+                        </p>
                     </div>
                     <div class="">
                         <a href="{{ url_for('characters') }}" class="btn linktext">See current list!</a>
@@ -61,7 +63,10 @@
                     <img class="card-img-top" src="/static/Statistics_image.png" alt="statistics image">
                     <div class="card-body">
                         <h4 class="card-title">Current Statistics</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
+                        <p class="card-text"> Which is the most common skill area showcased in our list of Woman Characters?.
+                             What country are they mostly from? 
+                             <br>See what criteria is the most and the least represented in our list so far! 
+                        </p>
                     </div>
                     <div class="">
                         <a href="{{ url_for('statistics') }}" class="btn linktext">Find Out More!</a>
@@ -69,6 +74,5 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- /.container -->
 {% endblock %}

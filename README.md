@@ -1,6 +1,6 @@
 # REMARKABLE WOMEN
 
-<img src="static/homescreenshot.png" style="margin: 0; height:200px; width:200px"></img>
+<img src="static/homescreenshot.png" style="margin: 0; height:150px; width:150px"></img>
 
 The Third milestone project from the Full Stack Developer course with Code Institute. The project is made based on the second module of the course that covers HTML, Python, MongoDB, Flask, Jinja templating and Heroku deployment.
 This is a website which aim is to create present and enlarge a list of remarkable women from any area, historical or fictional even female myths, so the user can register and log in, and add a new woman character by filling some fields in a form.
@@ -11,9 +11,8 @@ Basically the database will be composed by that list of women characters created
 
 - UX 
     - Project Goals
-    - User Goals
+    - User Stories/ Goals
     - Site Owner Goals
-    - User Stories/Goals
 
 - Design Choices 
     - Fonts
@@ -48,7 +47,7 @@ Basically the database will be composed by that list of women characters created
 ## User Experience:
 
 ### Project Goals:
-The final goal is to have as much as possible female characters added and share their stories so everyone can know about them, so make sure to add your favourites to your personal list as well!
+The final goal is to have as many as possible female characters added and share their stories so everyone can know about them, so make sure to add your favourites to your personal list as well!
 
 ### User Stories/Goals:
 - To find out information about female characters.
@@ -79,10 +78,12 @@ All icons are from font-awesome toolkit site used through cdn link included in t
 ### Images:
 The images chosen relate to historical pictures and simple geometric-type draws design related to each topic they present and they are only used in the home page. The rest of the images belong to the characters when the users create them.
 Sources:
-https://www.historybyzim.com/wp-content/uploads/2018/01/International-Council-of-Women-in-Washington-DC-in-March-1888..jpg
-https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2020/03/06144715/banner-4.jpg
-Image for statistics at home page Open-source illustrations
-https://undraw.co/
+
+<a href="https://www.historybyzim.com/wp-content/uploads/2018/01/International-Council-of-Women-in-Washington-DC-in-March-1888..jpg">Home image </a>
+
+<a href="https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2020/03/06144715/banner-4.jpg">Home section image</a>
+
+<a href="https://undraw.co/">Statistics at home page Open-source illustrations</a>
 
 
 #### Requirements:
@@ -90,62 +91,66 @@ Whenever installing new packages, the requirements.txt file must be updated so t
     
 Packages:
     The following packages have to be imported at the beggining of app.py file:
-    - flask: Using the following: flash: to show text messages after a function is executed.
+
+    * flask: Using the following: flash: to show text messages after a function is executed.
     
-    - render_template: Allows Flask look inside the templates directory to find the HTML files referenced in the return of the functions.
+    * render_template: Allows Flask look inside the templates directory to find the HTML files referenced in the return of the functions.
 
-    - redirect: to use with routing will redirect to a particular function in our Flask app.
+    * redirect: to use with routing will redirect to a particular function in our Flask app.
 
-    - request: when a function is called, to set conditions for the requested method GET or POST
+    * request: when a function is called, to set conditions for the requested method GET or POST
 
-    - session: to be able to use session() functions to put the user into 'session', like a temporary page cookie.
+    * session: to be able to use session() functions to put the user into 'session', like a temporary page cookie.
 
-    - url_for: method to target Python functions name and to point to actual root of a file name.
+    * url_for: method to target Python functions name and to point to actual root of a file name.
 
-    - flask-pymongo : Third-party library to get Flask to communicate with MongoDB Atlas.
+    * flask-pymongo : Third-party library to get Flask to communicate with MongoDB Atlas.
 
-    - dnsython: package to use the Mongo SRV connection string.
+    * dnsython: package to use the Mongo SRV connection string.
 
-    - bson.objectid: MongoDB stores its data in a JSON-like format called BSON. In order to find documents from MongoDB, we need to be able to render the ObjectId
+    * bson.objectid: MongoDB stores its data in a JSON-like format called BSON. In order to find documents from MongoDB, we need to be able to render the ObjectId
 
-    - flask-paginate using import Pagination, get_page_args in order to display pagination functionality in the list of characters. Documentation can be found here:
-    https://pythonhosted.org/Flask-paginate/
-    https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+    * flask-paginate using import Pagination, get_page_args in order to display pagination functionality in the list of characters. 
+    Documentation can be found:
 
-    - werkzeug.security : to make user authentication more secure using two main helpers "generate_password_hash", and "check_password_hash" that allow converting the user's password into another string, it will then salt that string with random data
+    <a href="https://pythonhosted.org/Flask-paginate/">here</a>
 
-    - env : to grab the hidden environment variables, only if env.py file exists in our root directory.
+    <a href="https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9">here</a>
+
+    * werkzeug.security : to make user authentication more secure using two main helpers "generate_password_hash", and "check_password_hash" that allow converting the user's password into another string, it will then salt that string with random data
+
+    * env : to grab the hidden environment variables, only if env.py file exists in our root directory.
     
 Database MONGODB Connection:
 
-    Navigate to 'mongodb.com create an account and after loggin in, start by creating a Cluster service that our database will run on.
+Navigate to 'mongodb.com create an account and after loggin in, start by creating a Cluster service that our database will run on.
 
-    select a Cloud provider and your closest region.
+select a Cloud provider and your closest region.
 
-    For thi project, there is no need to pay for a database, the free tier is enough, choose the M0 Tier.
+For thi project, there is no need to pay for a database, the free tier is enough, choose the M0 Tier.
 
-    Then, select 'Cluster Name' and click on the 'Create Cluster' button.
+Then, select 'Cluster Name' and click on the 'Create Cluster' button.
 
-    click on 'Database Access' under the Security section on the left, in order to create our database user credentials.
+click on 'Database Access' under the Security section on the left, in order to create our database user credentials.
 
-    Click on 'Add New Database User', to create username and password.
+Click on 'Add New Database User', to create username and password.
 
-    Set user privileges to 'Read and Write to the Database', and then we can click 'Add User'.
+Set user privileges to 'Read and Write to the Database', and then we can click 'Add User'.
 
-    click on 'Network Access' within the Security menu, in order to whitelist our IP address and make sure that it has access to our database.
+click on 'Network Access' within the Security menu, in order to whitelist our IP address and make sure that it has access to our database.
 
-    Click 'Add IP Address', and select 'Allow Access From Anywhere.
+Click 'Add IP Address', and select 'Allow Access From Anywhere.
 
-    Put the IP addresses of your hosts here, if possible, if not, choose 0.0.0.0
+Put the IP addresses of your hosts here, if possible, if not, choose 0.0.0.0
 
-    Go back to Clusters tab, click on the 'Collections' button, click 'Add My Own Data' to create the database.
+Go back to Clusters tab, click on the 'Collections' button, click 'Add My Own Data' to create the database.
 
-    For the statistics section, you need to have MongoDB Charts connected to your database in Mongosite. The following documentation is available for it:
-    <a href=https://docs.mongodb.com/charts/onprem/installation></a>
-    https://www.mongodb.com/blog/post/visualizing-your-data-with-mongodb-charts
-    https://docs.mongodb.com/charts/onprem/embedding-charts
+For the statistics section, you need to have MongoDB Charts connected to your database in Mongosite. The following documentation is available for it:
+    <a href="https://docs.mongodb.com/charts/onprem/installation"></a>
+    <a href="https://www.mongodb.com/blog/post/visualizing-your-data-with-mongodb-charts"></a>
+    <a href="https://docs.mongodb.com/charts/onprem/embedding-charts"></a>
 
-    Countries list imported into countries collection in MongoDB:
+Countries list imported into countries collection in MongoDB:
     The list was imported from this source:
      <a href="https://stackoverflow.com/questions/13678901/word-cities-towns-countries-database-for-mongodb-or-in-json"></a>
     This was done automatically for this project using RoboMongo which is a MongoDB GUI available <a href="https://robomongo.org/">here</a>
@@ -154,8 +159,7 @@ Database MONGODB Connection:
 
 #### Planning:
 
-    ### Database Design:
-    The initial idea was to have not many sections and a simple layout so no wireframes were used and not many navigation options included as it should be focussed on the database and having the following expected functions:
+The initial idea was to have not many sections and a simple layout so no wireframes were used and not many navigation options included as it should be focussed on the database and having the following expected functions:
     - Navigation depends on if user is logged or not and type of user (admin or normal)
     - The website protects the users information by registering and security functionality derived from werkzeug package.
     - The users can interact with the elements visible on the page, by adding new characters in a form, editing the ones they have already created or adding others to their favourites collection. The admin additionally can edit/create/delete category and skill area fields.
@@ -331,7 +335,7 @@ Before creating the Heroku application, setup some files that Heroku needs to ru
 First, on Gitpod command line tell Heroku which applications and dependencies are required to run the app by creating the requirements.txt file.
 
 This app require the following in requirements.txt:
-
+```bash
 click==7.1.2
 
 dnspython==2.0.0
@@ -347,7 +351,7 @@ itsdangerous==1.1.0
 pymongo==3.11.2
 
 Werkzeug==1.0.1
-
+```
 Next, create the Procfile that Heroku looks for to know which file runs the app, and how to run it. The file contains the following: web: python app.py
 
 On Heroku website once logged in, on the dashboard click on the "Create New App" button, provide a unique app name and select the region closest to you.

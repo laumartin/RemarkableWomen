@@ -73,8 +73,11 @@ def characters():
 def filter_category(category_name):
     characters = list(mongo.db.woman_card.find(
         {"category_name": category_name}))
+    characters_paginated = pag_characters(characters)
+    pagination = pagination_arg(characters)
     return render_template(
-        "characters.html", characters=characters, page_tittle=category_name)
+        "characters.html", characters=characters, page_tittle=category_name,
+            characters_paginated=characters_paginated, pagination=pagination)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -84,7 +87,10 @@ def search():
     # find docs from woman_card collection performing a $search on any
     # $text index for this collection using the query variable
     characters = list(mongo.db.woman_card.find({"$text": {"$search": query}}))
-    return render_template("characters.html", characters=characters)
+    characters_paginated = pag_characters(characters)
+    pagination = pagination_arg(characters)
+    return render_template("characters.html", characters=characters,
+        characters_paginated=characters_paginated, pagination=pagination)
 
 
 @app.route("/register", methods=["GET", "POST"])
